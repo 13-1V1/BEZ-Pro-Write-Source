@@ -12,16 +12,22 @@ const SMALL = new Set(['the', 'and', 'that', 'this', 'with', 'from', 'have', 'th
   'when', 'your', 'into', 'just', 'some', 'more', 'than', 'then', 'also', 'want', 'need', 'know', 'make', 'sure', 'please', 'after', 'reading']);
 
 /** "fixed", "fixing", "fixes" → "fix"; then the first 5 letters, so "heater" matches "heaters". */
-const stem = (w: string) => {
-  const cut = w.replace(/(ing|ed|es|s)$/, '');
-  return (cut.length >= 3 ? cut : w).slice(0, 5);
+export const stem = (w: string) => {
+  // A plural first ("writings" → "writing"), then the verb ending ("writing" → "writ").
+  const one = w.length > 4 ? w.replace(/(?<!s)s$/, '') : w;
+  const cut = one.replace(/(ing|ed|es)$/, '');
+  return (cut.length >= 3 ? cut : one).slice(0, 5);
 };
+
+const SMALL_STEMS = new Set([...SMALL].map(stem));
 
 /** "Email me a copy of my lease" → ["email", "copy", "lease"]. `min` is the shortest word kept. */
 export function mainWords(text: string, min = 4): string[] {
   return [...new Set((text.toLowerCase().match(/[a-z][a-z'’]+/g) ?? [])
     .filter((w) => w.length >= min && !SMALL.has(w))
-    .map(stem))];
+    .map(stem)
+    // "wanted", "needs": the same small words with an ending.
+    .filter((w) => !SMALL_STEMS.has(w)))];
 }
 
 export function goalLate(input: CheckInput): Flag[] {
@@ -33,5 +39,7 @@ export function goalLate(input: CheckInput): Flag[] {
   const opening = sentences(first.text).slice(0, 2).map((s) => s.text).join(' ');
   const said = new Set(mainWords(opening, 3));
   const found = goal.filter((w) => said.has(w)).length;
-  return found * 2 >= goal.length ? [] : [flag('clear', 'goal-late', null, 0, 0, input.prep.goal.trim())];
+  // A third of the goal's main words is enough: people put their goal in new words
+  // ("get her opinion" in the Plan, "get your feedback" in the email).
+  return found * 3 >= goal.length ? [] : [flag('clear', 'goal-late', null, 0, 0, input.prep.goal.trim())];
 }

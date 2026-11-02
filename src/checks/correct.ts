@@ -4,7 +4,7 @@
 // CORRECT: Harper spelling/grammar, slang and text-speak, sentences that
 // start lowercase, and a lowercase "i" used as a word.
 
-import { findPhrases, sentences } from './text';
+import { findPhrases, inside, linkRanges, sentences } from './text';
 import { flag, isProse, type CheckInput, type Flag } from './types';
 
 /** True when the letter(s) at [start, end) are part of a dotted abbreviation like "U.S." or "i.e.". */
@@ -37,6 +37,7 @@ export function correct(input: CheckInput): Flag[] {
         const at = s.start + lead[0].length - 1;
         if (text[at] === 'i' && !/[\w'’]/.test(text[at + 1] ?? '')) continue; // already flagged as lowercase-i
         const word = text.slice(at).match(/^[A-Za-z'’]+/)![0];
+        if (inside(at, at + word.length, linkRanges(text))) continue; // "https://…" on its own line
         out.push(flag('correct', 'capital-start', id, at, at + word.length, word));
       }
     }

@@ -28,7 +28,8 @@ function shadowsFor(cs: CId[]): string {
   return s;
 }
 
-export function renderHighlighted(text: string, flags: Flag[], onPick: (flags: Flag[]) => void): HTMLElement {
+/** `isCurrent` picks the spot being looked at right now; its highlight gets an outline (class "now"). */
+export function renderHighlighted(text: string, flags: Flag[], onPick: (flags: Flag[]) => void, isCurrent?: (f: Flag) => boolean): HTMLElement {
   const spans = flags.filter((f) => f.end > f.start);
   const cuts = new Set<number>([0, text.length]);
   for (const f of spans) {
@@ -65,6 +66,7 @@ export function renderHighlighted(text: string, flags: Flag[], onPick: (flags: F
     const btn = document.createElement('span');
     // Every flag here marked "This one's fine": still there, but quiet.
     btn.className = covering.every((f) => f.fine) ? 'hl fine' : 'hl';
+    if (isCurrent && covering.some(isCurrent)) btn.classList.add('now');
     btn.setAttribute('role', 'button');
     btn.tabIndex = 0;
     btn.dataset.i = String(covers.length);

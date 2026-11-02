@@ -128,6 +128,20 @@ export function capsWords(text: string, skip: Set<string>): CapsWord[] {
 }
 
 /** Drop matches that sit inside one of `keep` (e.g. "many" inside the sign-off "Many thanks,"). */
+/** Web links and email addresses: written exactly as they must be typed, so checks leave them alone. */
+export function linkRanges(text: string): Range[] {
+  return [...text.matchAll(/(?:https?:\/\/|www\.)[^\s<>"]+|[\w.+-]+@[\w-]+(?:\.[\w-]+)+/gi)].map((m) => {
+    // A period or comma right after a link ends the sentence; it isn't part of the link.
+    const t = m[0].replace(/[.,;:!?)\]]+$/, '');
+    return { start: m.index!, end: m.index! + t.length, text: t };
+  });
+}
+
+/** True if [start, end) sits inside one of the ranges. */
+export function inside(start: number, end: number, ranges: Range[]): boolean {
+  return ranges.some((r) => start >= r.start && end <= r.end);
+}
+
 export function outside(found: Range[], keep: Range[]): Range[] {
   return found.filter((r) => !keep.some((k) => r.start >= k.start && r.end <= k.end));
 }

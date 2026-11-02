@@ -5,7 +5,7 @@
 // unexplained acronyms, and hard words with a simpler option.
 
 import { wordsOf } from '../scores/words';
-import { capsWords, findPhrases, paragraphs, sentences } from './text';
+import { capsWords, findPhrases, inside, linkRanges, paragraphs, sentences } from './text';
 import { flag, isProse, type CheckInput, type Flag } from './types';
 
 const MAX_SENTENCE_WORDS = 25;
@@ -48,6 +48,7 @@ export function clear(input: CheckInput): Flag[] {
   const skip = new Set([...lists['common-acronyms'], ...lists['vague-dates']].map((w) => w.toUpperCase()));
   const simpler = new Map(lists.simpler.map((p) => [p.word.toLowerCase(), p.use]));
   const seen: string[] = [];
+  const flaggedAcronyms = new Set<string>();
 
   for (const { section, text } of input.sections) {
     const id = section.id;
@@ -66,11 +67,15 @@ export function clear(input: CheckInput): Flag[] {
 
       // Acronyms: a lone 2–5 letter caps word that isn't common and wasn't spelled out
       // earlier as "Full Name (ABC)". Caps words in a run are shouting (Courteous), not acronyms.
+      // Only its first use is pointed at, and never one inside a web link.
+      const links = linkRanges(text);
       for (const w of capsWords(text, skip)) {
         if (w.inRun || w.text.length > 5 || /['’]/.test(w.text)) continue;
+        if (inside(w.start, w.end, links) || flaggedAcronyms.has(w.text)) continue;
         const isDefinition = text[w.start - 1] === '(' && text[w.end] === ')';
         const definedBefore = definedAcronyms([...seen, text.slice(0, w.start)]).has(w.text);
         if (isDefinition || definedBefore) continue;
+        flaggedAcronyms.add(w.text);
         out.push(flag('clear', 'acronym', id, w.start, w.end, w.text));
       }
     }

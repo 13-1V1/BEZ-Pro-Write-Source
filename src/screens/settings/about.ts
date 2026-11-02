@@ -16,7 +16,7 @@ export function aboutPanel(_app: App): HTMLElement {
   void storeRoot().then((p) => (folder.textContent = p)).catch(() => (folder.textContent = "(couldn't find the data folder)"));
   return h('div', { class: 'about' },
     h('h2', null, 'About BEZ Pro Write'),
-    h('p', null, h('strong', null, 'Version 1.3.0')),
+    h('p', null, h('strong', null, 'Version 1.4.0')),
     h('p', null, 'A step-by-step guide to professional writing with the 7 C\'s: Clear, Concise, Concrete, Correct, Coherent, Complete, and Courteous.'),
     h('p', { class: 'muted' }, isWeb
       ? 'Made by Brennan Meyer, Santa Clarita, CA. No accounts, no AI, and your writing never leaves this browser. You write every word.'

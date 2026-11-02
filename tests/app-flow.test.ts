@@ -108,32 +108,52 @@ describe('check and Finish screens (11/01/2026 ideas)', () => {
     expect(spotsIn(app, before)).toBeGreaterThan(spotsIn(app, d.text));
   });
 
-  it('says so when every answer is yes but spots are left', async () => {
-    const { checkScreen } = await import('../src/screens/check');
-    const { app } = makeApp();
-    const d = emailDraft('check:concise');
-    d.text.purpose = 'I just wanted to really ask about the lease.';
-    d.checklist.concise = { 0: 'yes', 1: 'yes' };
-    app.open(d);
-    const view = checkScreen(app, app.steps.find((s) => s.key === 'check:concise')!);
-    const note = [...view.body.querySelectorAll('p.reminder')].find((p) => p.textContent?.startsWith('You answered yes'));
-    expect(note && !(note as HTMLElement).hidden).toBe(true);
-  });
 });
 
-describe('spot stepper (11/01/2026 ideas)', () => {
-  it('Next spot walks the highlights and explains each one', async () => {
+describe('7 C\'s check screen (11/02/2026 redesign)', () => {
+  const open = async (key: string, text: Record<string, string>, prep: Record<string, string> = {}) => {
     const { checkScreen } = await import('../src/screens/check');
     const { app } = makeApp();
-    const d = emailDraft('check:concise');
-    d.text.purpose = 'I just wanted to really ask about the lease.';
+    const d = emailDraft(key);
+    Object.assign(d.text, text);
+    Object.assign(d.prep, prep);
     app.open(d);
-    const view = checkScreen(app, app.steps.find((s) => s.key === 'check:concise')!);
+    const view = checkScreen(app, app.steps.find((s) => s.key === key)!);
     document.body.append(view.body);
-    const next = [...view.body.querySelectorAll('button')].find((b) => b.textContent === 'Next spot →')!;
-    next.click();
-    expect(view.body.querySelector('.spot-stepper')?.textContent).toContain('Spot 1 of');
-    expect(view.body.querySelector('.explain-item')).not.toBeNull();
+    const rows = () => [...view.body.querySelectorAll<HTMLElement>('.items > li')];
+    const button = (label: string) => [...view.body.querySelectorAll<HTMLButtonElement>('.items .cur button')].find((b) => b.textContent === label)!;
+    return { app, d, view, rows, button };
+  };
+
+  it("opens the first spot; \"It's fine, next\" ticks it and opens the next one", async () => {
+    const { d, view, rows, button } = await open('check:concise', { purpose: 'I just wanted to really ask about the lease.' });
+    expect(rows().length).toBeGreaterThan(1);
+    expect(rows()[0].classList.contains('cur')).toBe(true);
+    button("It's fine, next ›").click();
+    expect(rows()[0].classList.contains('done')).toBe(true);
+    expect(rows()[1].classList.contains('cur')).toBe(true);
+    expect(d.fine.length).toBe(1);
+    expect(view.body.querySelector('.hl.now')).not.toBeNull();
+    view.body.remove();
+  });
+
+  it('"Skip for now" moves on without marking it fine', async () => {
+    const { d, view, rows, button } = await open('check:concise', { purpose: 'I just wanted to really ask about the lease.' });
+    button('Skip for now').click();
+    expect(rows()[0].classList.contains('done')).toBe(false);
+    expect(rows()[1].classList.contains('cur')).toBe(true);
+    expect(d.fine).toEqual([]);
+    view.body.remove();
+  });
+
+  it('Complete lists every Plan point: found ones ticked, the missing one open', async () => {
+    const { view, rows } = await open('check:complete', { purpose: 'I am writing to ask for a copy of my lease.' },
+      { facts: 'I need a copy of my lease.\nThe heater is broken.' });
+    const labels = rows().map((r) => r.querySelector('.what')?.textContent ?? '');
+    expect(labels[0]).toContain('I need a copy of my lease');
+    expect(rows()[0].classList.contains('done')).toBe(true);
+    expect(rows()[1].classList.contains('cur')).toBe(true);
+    expect(labels[1]).toContain('The heater is broken');
     view.body.remove();
   });
 });

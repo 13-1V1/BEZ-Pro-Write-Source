@@ -11,7 +11,7 @@ Desktop app for Windows and Mac (Tauri 2 + plain TypeScript/Vite, no UI framewor
 walks a beginner through writing an email, memo, letter, cover letter, or short report
 using the 7 C's. Full spec: `docs/BUILD_BRIEF.md` (the original plan; some later decisions are
 recorded inside it with dates, the rest live in "Decisions" below — where they differ, the
-Decisions list and the code win). Current version: 1.3.0.
+Decisions list and the code win). Current version: 1.4.0.
 
 ## The #1 rule
 The app never writes or rewrites the user's words. Checks only point at text, never fix it.
