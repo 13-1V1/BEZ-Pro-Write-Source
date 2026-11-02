@@ -1,0 +1,38 @@
+<!-- Created by: Brennan Meyer with use of Claude Code 11/01/2026 Santa Clarita, CA -->
+<!-- brennanmmeyer@gmail.com -->
+<!-- App icon: a fountain pen that has just written "BEZ". The letters are ink strokes
+     (paths, not a font) so they look the same everywhere and stay readable at 16 px.
+     Colors are the app's own: dark page, cream ink, muted green pen, amber nib. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <!-- tile -->
+  <rect x="32" y="32" width="960" height="960" rx="200" fill="#1e1e1e"/>
+  <rect x="52" y="52" width="920" height="920" rx="182" fill="none" stroke="#3c3c3c" stroke-width="16"/>
+
+  <!-- writing line -->
+  <line x1="112" y1="668" x2="866" y2="668" stroke="#5fbf8a" stroke-opacity="0.45" stroke-width="14" stroke-linecap="round"/>
+
+  <!-- B E Z in ink -->
+  <g transform="translate(-34 -80)" fill="none" stroke="#f3efe4" stroke-width="72" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M168 330 V680 M168 330 H262 C356 330 356 498 262 500 H168 M262 500 C372 500 372 680 262 680 H168"/>
+    <path d="M436 330 V680 M436 330 H566 M436 505 H540 M436 680 H566"/>
+    <path d="M636 330 H786 L636 680 H796"/>
+  </g>
+
+  <!-- product name under the writing line -->
+  <text x="490" y="850" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="150" font-weight="600" fill="#f3efe4" fill-opacity="0.85">Pro Write</text>
+
+  <!-- fountain pen, nib touching the end of the Z -->
+  <g transform="translate(766 610) rotate(22)">
+    <!-- nib -->
+    <path d="M0 0 L-34 -104 Q0 -118 34 -104 Z" fill="#e8a04c"/>
+    <line x1="0" y1="-14" x2="0" y2="-80" stroke="#1e1e1e" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="0" cy="-82" r="9" fill="#1e1e1e"/>
+    <!-- grip -->
+    <path d="M-36 -104 H36 L42 -170 H-42 Z" fill="#2f8a5c"/>
+    <!-- barrel -->
+    <rect x="-48" y="-420" width="96" height="256" rx="30" fill="#5fbf8a"/>
+    <!-- band and clip -->
+    <rect x="-50" y="-206" width="100" height="22" fill="#e8a04c"/>
+    <rect x="-14" y="-402" width="20" height="160" rx="10" fill="#2f8a5c"/>
+  </g>
+</svg>

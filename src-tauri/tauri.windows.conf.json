@@ -1,0 +1,17 @@
+{
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "BEZ Pro Write",
+        "width": 1280,
+        "height": 860,
+        "minWidth": 960,
+        "minHeight": 640,
+        "backgroundColor": "#14161a",
+        "dragDropEnabled": false,
+        "zoomHotkeysEnabled": true
+      }
+    ]
+  }
+}

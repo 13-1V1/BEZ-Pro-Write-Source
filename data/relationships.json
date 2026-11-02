@@ -1,0 +1,23 @@
+{
+  "_header": "Created by: Brennan Meyer with use of Claude Code 10/28/2026 Santa Clarita, CA / brennanmmeyer@gmail.com",
+  "boss": {
+    "tip": "Be respectful and brief. Use \"Hello\" or \"Dear\" with their name, and say thank you.",
+    "formalGreeting": true
+  },
+  "coworker": {
+    "tip": "Friendly is fine. \"Hi\" plus their first name works. Still skip slang.",
+    "formalGreeting": false
+  },
+  "customer": {
+    "tip": "Be warm and polite. Use \"Dear\" or \"Hello\" with their title and last name, and thank them.",
+    "formalGreeting": true
+  },
+  "stranger": {
+    "tip": "Be polite and formal. Use \"Dear\" with their title and last name, or \"Dear Hiring Manager\" if you don't know it.",
+    "formalGreeting": true
+  },
+  "teacher": {
+    "tip": "Use their title: Professor, Dr., Mr., or Ms. Name your class. Thank them for their time.",
+    "formalGreeting": true
+  }
+}

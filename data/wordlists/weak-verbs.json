@@ -1,0 +1,15 @@
+{
+  "_header": "Created by: Brennan Meyer with use of Claude Code 11/01/2026 Santa Clarita, CA / brennanmmeyer@gmail.com",
+  "_source": "BEZ Pro Write list. An -ly word is only flagged next to one of these, like \"walked quickly\" or \"said loudly\" (the same idea as Hemingway Editor's 08/19/2026 weakener change).",
+  "words": [
+    "is", "are", "was", "were", "be", "been", "am",
+    "go", "goes", "went", "going", "come", "comes", "came", "coming",
+    "get", "gets", "got", "getting", "make", "makes", "made", "making",
+    "do", "does", "did", "doing", "put", "puts", "take", "takes", "took", "taking",
+    "say", "says", "said", "saying", "talk", "talks", "talked", "talking", "speak", "spoke", "ask", "asked",
+    "tell", "told", "write", "wrote", "look", "looks", "looked", "looking", "see", "saw", "seem", "seems", "seemed",
+    "feel", "feels", "felt", "walk", "walks", "walked", "walking", "run", "runs", "ran", "running",
+    "move", "moves", "moved", "moving", "work", "works", "worked", "working", "try", "tries", "tried", "trying",
+    "eat", "ate", "close", "closed", "open", "opened", "change", "changed", "finish", "finished", "start", "started"
+  ]
+}

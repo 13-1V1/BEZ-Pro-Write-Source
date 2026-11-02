@@ -1,0 +1,186 @@
+{
+  "_header": "Created by: Brennan Meyer with use of Claude Code 10/28/2026 Santa Clarita, CA / brennanmmeyer@gmail.com",
+  "star": {
+    "name": "STAR",
+    "intro": "Tell a short true story in four parts: Situation, Task, Action, Result. Each box is one or two sentences.",
+    "parts": [
+      {
+        "id": "situation",
+        "label": "Situation",
+        "question": "Where were you, and what was going on?",
+        "tip": "Set the scene in one sentence. Name the place and when.",
+        "good": "At Valley Hardware in spring 2025, our online orders doubled in one month.",
+        "bad": "So there was this time at work when things got crazy.",
+        "targetWords": [8, 30]
+      },
+      {
+        "id": "task",
+        "label": "Task",
+        "question": "What was your job or goal?",
+        "tip": "Say what you were responsible for.",
+        "good": "My manager asked me to cut shipping delays without hiring more staff.",
+        "bad": "I had to deal with it.",
+        "targetWords": [6, 25]
+      },
+      {
+        "id": "action",
+        "label": "Action",
+        "question": "What did you do yourself?",
+        "tip": "Use \"I,\" not \"we.\" Name the exact steps you took.",
+        "good": "I set up a packing checklist and moved the label printer next to the packing table.",
+        "bad": "We kind of fixed things.",
+        "targetWords": [10, 40]
+      },
+      {
+        "id": "result",
+        "label": "Result",
+        "question": "What happened because of it?",
+        "tip": "Use a number if you can: time saved, money, people helped.",
+        "good": "Orders shipped in 1 day instead of 3, and complaints dropped by half.",
+        "bad": "It went pretty well.",
+        "targetWords": [6, 30]
+      }
+    ]
+  },
+  "bluf": {
+    "name": "BLUF",
+    "intro": "Bottom Line Up Front: say your main point first, then why it matters.",
+    "parts": [
+      {
+        "id": "bottom-line",
+        "label": "Bottom line",
+        "question": "If the reader only reads one sentence, what must it say?",
+        "tip": "Put the decision, answer, or ask here, with any date.",
+        "good": "Starting Monday, Nov 2, all time sheets are due by 5 p.m. Friday.",
+        "bad": "I wanted to share some thoughts about time sheets.",
+        "targetWords": [8, 30]
+      },
+      {
+        "id": "why",
+        "label": "Why it matters",
+        "question": "Why should the reader care?",
+        "tip": "One or two sentences. Say who it affects and how.",
+        "good": "Payroll needs the weekend to process checks on time.",
+        "bad": "There are various reasons for this.",
+        "targetWords": [6, 35]
+      }
+    ]
+  },
+  "prep": {
+    "name": "PREP",
+    "intro": "Make your case in four parts: Point, Reason, Example, Point again.",
+    "parts": [
+      {
+        "id": "point",
+        "label": "Point",
+        "question": "What are you asking for or proposing?",
+        "tip": "Say it plainly in one sentence.",
+        "good": "I'd like to move the team meeting to Thursdays at 10 a.m.",
+        "bad": "Maybe we could think about changing some stuff.",
+        "targetWords": [6, 25]
+      },
+      {
+        "id": "reason",
+        "label": "Reason",
+        "question": "Why is it a good idea?",
+        "tip": "Give the one strongest reason.",
+        "good": "Monday mornings are our busiest time for customer calls.",
+        "bad": "Because it would be better.",
+        "targetWords": [6, 30]
+      },
+      {
+        "id": "example",
+        "label": "Example",
+        "question": "What proof or example backs it up?",
+        "tip": "Use a real number, date, or event.",
+        "good": "Last Monday, 14 calls went to voicemail during the meeting.",
+        "bad": "Lots of things have happened.",
+        "targetWords": [6, 35]
+      },
+      {
+        "id": "point-again",
+        "label": "Point again",
+        "question": "What do you want to happen next, and by when?",
+        "tip": "Repeat your point as a clear next step.",
+        "good": "Could we try Thursdays starting Nov 5?",
+        "bad": "Anyway, let me know.",
+        "targetWords": [5, 25]
+      }
+    ]
+  },
+  "apology": {
+    "name": "Apology formula",
+    "intro": "A real apology has four parts: admit it, own it, fix it, and prevent it.",
+    "parts": [
+      {
+        "id": "admit",
+        "label": "Admit it",
+        "question": "What went wrong? Say sorry for it.",
+        "tip": "Start with \"I'm sorry\" and name the exact problem.",
+        "good": "I'm sorry I missed our 2 p.m. meeting on Tuesday, Oct 27.",
+        "bad": "Sorry if you were upset about the thing.",
+        "targetWords": [6, 30]
+      },
+      {
+        "id": "own",
+        "label": "Own it",
+        "question": "How was it your fault?",
+        "tip": "Take responsibility. Skip excuses and don't blame others.",
+        "good": "I put it on my calendar for the wrong day.",
+        "bad": "My coworker messed up the schedule.",
+        "targetWords": [5, 30]
+      },
+      {
+        "id": "fix",
+        "label": "Fix it",
+        "question": "What will you do to make it right?",
+        "tip": "Offer a specific fix, with a day or a time.",
+        "good": "I can meet any time Thursday or Friday, and I'll bring the full report.",
+        "bad": "I'll try to make it up to you somehow.",
+        "targetWords": [6, 35]
+      },
+      {
+        "id": "prevent",
+        "label": "Prevent it",
+        "question": "How will you stop it from happening again?",
+        "tip": "One concrete change.",
+        "good": "I now set two reminders for every client meeting.",
+        "bad": "It won't happen again.",
+        "targetWords": [5, 30]
+      }
+    ]
+  },
+  "sbi": {
+    "name": "SBI",
+    "intro": "Raise a problem without blame: Situation, Behavior, Impact. Stick to facts, not feelings about the person.",
+    "parts": [
+      {
+        "id": "situation",
+        "label": "Situation",
+        "question": "When and where did it happen?",
+        "tip": "Give the date, time, and place.",
+        "good": "On Saturday, Oct 24, I ordered a desk from your Valencia store.",
+        "bad": "You guys always do this.",
+        "targetWords": [6, 30]
+      },
+      {
+        "id": "behavior",
+        "label": "Behavior",
+        "question": "What happened? Stick to what anyone could see or hear.",
+        "tip": "Describe actions, not guesses about why.",
+        "good": "The desk arrived with a cracked top and two missing legs.",
+        "bad": "Your staff obviously doesn't care.",
+        "targetWords": [6, 35]
+      },
+      {
+        "id": "impact",
+        "label": "Impact",
+        "question": "How did it affect you?",
+        "tip": "Say the real cost: time, money, or a missed plan.",
+        "good": "I had to take a day off work to wait for a second delivery.",
+        "bad": "It ruined my life.",
+        "targetWords": [6, 35]
+      }
+    ]
+  }
+}

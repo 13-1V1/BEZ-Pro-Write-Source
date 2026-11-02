@@ -1,0 +1,29 @@
+## your-address
+24510 Main Street, Apt 3
+Santa Clarita, CA 91321
+## date
+October 28, 2026
+## their-address
+Ms. Dana Alvarez
+Property Manager
+Oak Ridge Apartments
+1200 Oak Ridge Road
+Valencia, CA 91355
+## greeting
+Dear Ms. Alvarez:
+## purpose
+I'm writing to request a copy of my lease for Unit 4B.
+## details
+I moved into Unit 4B on March 1, 2025. My bank needs the lease for a car loan.
+
+Because the loan closes on Monday, Nov 9, I need the copy by Friday, Nov 6.
+## ask
+Please mail or email the copy by Friday, Nov 6. You can reach me at (661) 555-0142.
+## closing
+Thank you for your help.
+
+Sincerely,
+## signature
+Jordan Reyes
+(661) 555-0142
+jordan.reyes@example.com

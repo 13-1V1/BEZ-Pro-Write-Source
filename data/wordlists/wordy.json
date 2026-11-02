@@ -1,0 +1,246 @@
+{
+  "_header": "Created by: Brennan Meyer with use of Claude Code 10/28/2026 Santa Clarita, CA / brennanmmeyer@gmail.com",
+  "_source": "BEZ Pro Write list. Idea from write-good's too-wordy check (MIT).",
+  "pairs": [
+    {
+      "word": "in order to",
+      "use": "to"
+    },
+    {
+      "word": "due to the fact that",
+      "use": "because"
+    },
+    {
+      "word": "owing to the fact that",
+      "use": "because"
+    },
+    {
+      "word": "in light of the fact that",
+      "use": "because"
+    },
+    {
+      "word": "in spite of the fact that",
+      "use": "although"
+    },
+    {
+      "word": "despite the fact that",
+      "use": "although"
+    },
+    {
+      "word": "at this point in time",
+      "use": "now"
+    },
+    {
+      "word": "at the present time",
+      "use": "now"
+    },
+    {
+      "word": "at this time",
+      "use": "now"
+    },
+    {
+      "word": "in the event that",
+      "use": "if"
+    },
+    {
+      "word": "in the near future",
+      "use": "a real date"
+    },
+    {
+      "word": "for the purpose of",
+      "use": "to, for"
+    },
+    {
+      "word": "with regard to",
+      "use": "about"
+    },
+    {
+      "word": "with respect to",
+      "use": "about"
+    },
+    {
+      "word": "in regard to",
+      "use": "about"
+    },
+    {
+      "word": "in reference to",
+      "use": "about"
+    },
+    {
+      "word": "pertaining to",
+      "use": "about"
+    },
+    {
+      "word": "in relation to",
+      "use": "about"
+    },
+    {
+      "word": "a large number of",
+      "use": "the real number"
+    },
+    {
+      "word": "the majority of",
+      "use": "most"
+    },
+    {
+      "word": "a majority of",
+      "use": "most"
+    },
+    {
+      "word": "is able to",
+      "use": "can"
+    },
+    {
+      "word": "are able to",
+      "use": "can"
+    },
+    {
+      "word": "has the ability to",
+      "use": "can"
+    },
+    {
+      "word": "has the capacity to",
+      "use": "can"
+    },
+    {
+      "word": "make a decision",
+      "use": "decide"
+    },
+    {
+      "word": "come to a conclusion",
+      "use": "conclude"
+    },
+    {
+      "word": "give consideration to",
+      "use": "consider"
+    },
+    {
+      "word": "take into consideration",
+      "use": "consider"
+    },
+    {
+      "word": "make an attempt",
+      "use": "try"
+    },
+    {
+      "word": "conduct an investigation",
+      "use": "investigate"
+    },
+    {
+      "word": "provide assistance",
+      "use": "help"
+    },
+    {
+      "word": "is in need of",
+      "use": "needs"
+    },
+    {
+      "word": "in close proximity to",
+      "use": "near"
+    },
+    {
+      "word": "on a daily basis",
+      "use": "daily"
+    },
+    {
+      "word": "on a regular basis",
+      "use": "weekly (or how often it really is)"
+    },
+    {
+      "word": "each and every",
+      "use": "each"
+    },
+    {
+      "word": "first and foremost",
+      "use": "first"
+    },
+    {
+      "word": "until such time as",
+      "use": "until"
+    },
+    {
+      "word": "prior to",
+      "use": "before"
+    },
+    {
+      "word": "subsequent to",
+      "use": "after"
+    },
+    {
+      "word": "as a means of",
+      "use": "to"
+    },
+    {
+      "word": "in the process of",
+      "use": "(cut it)"
+    },
+    {
+      "word": "it is important to note that",
+      "use": "(cut it)"
+    },
+    {
+      "word": "please be advised that",
+      "use": "(cut it)"
+    },
+    {
+      "word": "I am writing to inform you that",
+      "use": "I'm letting you know"
+    },
+    {
+      "word": "please do not hesitate to",
+      "use": "please"
+    },
+    {
+      "word": "at your earliest convenience",
+      "use": "by (a real date)"
+    },
+    {
+      "word": "whether or not",
+      "use": "whether"
+    },
+    {
+      "word": "past history",
+      "use": "history"
+    },
+    {
+      "word": "end result",
+      "use": "result"
+    },
+    {
+      "word": "final outcome",
+      "use": "outcome"
+    },
+    {
+      "word": "free gift",
+      "use": "gift"
+    },
+    {
+      "word": "advance planning",
+      "use": "planning"
+    },
+    {
+      "word": "added bonus",
+      "use": "bonus"
+    },
+    {
+      "word": "basic fundamentals",
+      "use": "fundamentals"
+    },
+    {
+      "word": "close proximity",
+      "use": "near"
+    },
+    {
+      "word": "completely finished",
+      "use": "finished"
+    },
+    {
+      "word": "reply back",
+      "use": "reply"
+    },
+    {
+      "word": "repeat again",
+      "use": "repeat"
+    }
+  ]
+}

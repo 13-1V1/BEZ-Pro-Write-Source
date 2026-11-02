@@ -1,0 +1,141 @@
+{
+  "_header": "Created by: Brennan Meyer with use of Claude Code 10/28/2026 Santa Clarita, CA / brennanmmeyer@gmail.com",
+  "id": "cover-letter",
+  "name": "Cover Letter",
+  "useWhen": "Use this when you're applying for a job and need a letter to go with your resume.",
+  "order": 4,
+  "readingTarget": 55,
+  "sections": [
+    {
+      "id": "greeting",
+      "label": "Greeting",
+      "role": "greeting",
+      "optional": false,
+      "what": "Who you're writing to.",
+      "tip": "Use the hiring manager's name if the job post gives it. If not, \"Dear Hiring Manager:\" is fine.",
+      "good": "Dear Ms. Chen:",
+      "bad": "Hey team!",
+      "targetWords": [2, 5],
+      "phrases": ["Dear Mr. Lee:", "Dear Hiring Manager:", "Dear Search Committee:"],
+      "profileFields": []
+    },
+    {
+      "id": "job",
+      "label": "The job and why you're writing",
+      "role": "body",
+      "optional": false,
+      "what": "Name the job, where you saw it, and one reason you're a strong fit.",
+      "tip": "Name the exact job title. Hook them with your best fact.",
+      "good": "I'm applying for the Office Assistant job posted on Indeed. I bring two years of front-desk experience and a 98% customer rating.",
+      "bad": "I want a job at your company.",
+      "targetWords": [20, 70],
+      "phrases": ["I'm applying for the [job title] position posted on [site].", "I was excited to see…", "With [years] of experience in…"],
+      "profileFields": []
+    },
+    {
+      "id": "skills",
+      "label": "Your skills (tell a STAR story)",
+      "role": "body",
+      "optional": false,
+      "what": "One short true story that proves you can do this job.",
+      "tip": "Pick a story that matches a skill the job post asks for.",
+      "good": "At Valley Hardware, I cut shipping time from 3 days to 1 by reorganizing the packing area.",
+      "bad": "I'm a hard worker and a team player.",
+      "targetWords": [40, 150],
+      "phrases": [],
+      "profileFields": [],
+      "framework": "star"
+    },
+    {
+      "id": "why-company",
+      "label": "Why this company",
+      "role": "body",
+      "optional": false,
+      "what": "Why you want to work there in particular.",
+      "tip": "Name one real detail about the company: a product, value, or project.",
+      "good": "I admire how Sunrise Dental offers free cleanings to local kids every summer.",
+      "bad": "You guys seem cool.",
+      "targetWords": [15, 70],
+      "phrases": ["I'm drawn to [company] because…", "I admire how [company]…", "Your work on… matches my…"],
+      "profileFields": []
+    },
+    {
+      "id": "ask",
+      "label": "Ask for an interview",
+      "role": "ask",
+      "optional": false,
+      "what": "Ask for an interview and say how to reach you.",
+      "tip": "Ask directly. Give your phone or email.",
+      "good": "I would welcome the chance to interview. You can reach me at (661) 555-0142.",
+      "bad": "Hope to hear from you maybe.",
+      "targetWords": [10, 40],
+      "phrases": ["I would welcome the chance to interview…", "I'd love to talk about how I can help…", "You can reach me at…"],
+      "profileFields": []
+    },
+    {
+      "id": "closing",
+      "label": "Closing",
+      "role": "closing",
+      "optional": false,
+      "what": "Thank them, then a formal sign-off.",
+      "tip": "Thank them for their time, then \"Sincerely,\".",
+      "good": "Thank you for your time and consideration.\n\nSincerely,",
+      "bad": "Peace",
+      "targetWords": [1, 15],
+      "phrases": ["Thank you for your time and consideration.", "Thank you for reviewing my application.", "Sincerely,"],
+      "profileFields": []
+    },
+    {
+      "id": "signature",
+      "label": "Signature",
+      "role": "signature",
+      "optional": false,
+      "what": "Your full name and contact info.",
+      "tip": "Full name, phone, and email.",
+      "good": "Jordan Reyes\n(661) 555-0142\njordan.reyes@example.com",
+      "bad": "Jordan",
+      "targetWords": [2, 20],
+      "phrases": [],
+      "profileFields": ["name", "phone", "email"],
+      "gapBefore": 3
+    }
+  ],
+  "topics": [
+    {
+      "id": "general",
+      "name": "General",
+      "tone": "Confident and specific. Prove it with a story instead of a claim.",
+      "dos": ["Name the exact job title", "Tell one true story with a number", "Keep it under one page"],
+      "donts": ["Repeat your whole resume", "Use \"I\" to start every sentence", "Send the same letter to every company"]
+    },
+    {
+      "id": "entry-level",
+      "name": "Entry-Level",
+      "tone": "Eager and honest. School, volunteer, and side jobs count.",
+      "dos": ["Use school, volunteer, or club experience", "Show you learn fast", "Name a skill from the job post"],
+      "donts": ["Apologize for having little experience", "Say \"I know I'm not qualified\"", "Exaggerate"],
+      "sectionOverrides": {
+        "skills": {
+          "tip": "Your story can come from school, a club, volunteering, or a part-time job.",
+          "good": "As treasurer of my school's robotics club, I tracked a $2,000 budget and kept us under it all year."
+        }
+      }
+    },
+    {
+      "id": "career-change",
+      "name": "Career Change",
+      "tone": "Show how your old skills transfer to the new job.",
+      "dos": ["Connect your past job to this one", "Name skills that carry over", "Show why you're making the switch"],
+      "donts": ["Trash your old field", "Assume they'll see the connection", "Over-explain the change"],
+      "sectionOverrides": {
+        "job": {
+          "tip": "Say what you did before and why it prepared you for this.",
+          "good": "After six years as a restaurant manager, I'm applying for the Office Coordinator role, where my scheduling and budgeting skills fit well."
+        },
+        "skills": {
+          "tip": "Pick a story from your old job that uses a skill this job needs."
+        }
+      }
+    }
+  ]
+}

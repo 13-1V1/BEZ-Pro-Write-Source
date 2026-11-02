@@ -1,0 +1,17 @@
+<!-- Created by: Brennan Meyer with use of Claude Code 10/28/2026 Santa Clarita, CA -->
+<!-- brennanmmeyer@gmail.com -->
+<!doctype html>
+<html lang="en">
+  <head><meta charset="UTF-8" /><title>Print test</title></head>
+  <body style="background:#1e1e1e;color:#eee">
+    <div id="app">App screen (must NOT print)</div>
+    <div id="print-root"></div>
+    <script type="module">
+      import '/src/styles/app.css';
+      import { printText } from '/src/export/print.ts';
+      // Fill the print page without opening the dialog, so a headless browser can print it.
+      window.print = () => {};
+      printText('24510 Main Street, Apt 3\nSanta Clarita, CA 91321\n\nOctober 28, 2026\n\nDear Ms. Alvarez:\n\nI am writing to request a copy of my lease.\n\nSincerely,\n\n\n\nJordan Reyes', 'Print test');
+    </script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<!-- Created by: Brennan Meyer with use of Claude Code 10/28/2026 Santa Clarita, CA -->
+<!-- brennanmmeyer@gmail.com -->
+<!doctype html>
+<html lang="en">
+  <head><meta charset="UTF-8" /><title>Spell test</title></head>
+  <body style="background:#1e1e1e;color:#eee;font-family:Segoe UI">
+    <h1>Harper spell test</h1>
+    <pre id="out">loading…</pre>
+    <script type="module">
+      import { checkSpelling, addKnownWords } from '/src/spell/harper.ts';
+      const t0 = performance.now();
+      const text = 'I recieved the pakage on Tusday. Ms. Alvarez sent it. Their going to call me. It is a nice day.';
+      const before = await checkSpelling(text);
+      await addKnownWords(['Alvarez']);
+      const after = await checkSpelling(text);
+      const show = (list) => list.map((i) => `${i.kind}: "${text.slice(i.start, i.end)}" — ${i.message} [${i.suggestions.join(', ')}]`).join('\n');
+      document.getElementById('out').textContent =
+        `loaded+checked in ${Math.round(performance.now() - t0)} ms\n\nBEFORE:\n${show(before)}\n\nAFTER adding "Alvarez":\n${show(after)}`;
+      window.spellDone = true;
+    </script>
+  </body>
+</html>

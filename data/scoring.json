@@ -1,0 +1,7 @@
+{
+  "_header": "Created by: Brennan Meyer with use of Claude Code 10/28/2026 Santa Clarita, CA / brennanmmeyer@gmail.com",
+  "_note": "Style score = max(0, 100 - (sum of weighted flags / word count x 100)). Each flag counts once per C.",
+  "defaultWeight": 1,
+  "byC": { "correct": 2, "coherent": 0 },
+  "byCheck": {}
+}

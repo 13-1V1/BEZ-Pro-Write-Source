@@ -1,0 +1,76 @@
+{
+  "_header": "Created by: Brennan Meyer with use of Claude Code 10/28/2026 Santa Clarita, CA / brennanmmeyer@gmail.com",
+  "id": "other",
+  "name": "Something Else",
+  "useWhen": "Use this when none of the other types fit, like a note, a message to a group, or a form reply.",
+  "order": 6,
+  "readingTarget": 60,
+  "sections": [
+    {
+      "id": "greeting",
+      "label": "Greeting",
+      "role": "greeting",
+      "optional": true,
+      "what": "A hello to the reader. Skip it if this piece doesn't need one.",
+      "tip": "Use their name if you know it.",
+      "good": "Hello Mr. Ortiz,",
+      "bad": "Yo",
+      "targetWords": [2, 5],
+      "phrases": ["Hello [Name],", "Dear [Title] [Last name],", "Hi everyone,"],
+      "profileFields": []
+    },
+    {
+      "id": "purpose",
+      "label": "Purpose",
+      "role": "body",
+      "optional": false,
+      "what": "Why you are writing, in one or two sentences.",
+      "tip": "Put your main point first.",
+      "good": "I'm writing to let the team know the break room will close on Monday, Nov 2.",
+      "bad": "So there's this thing happening.",
+      "targetWords": [10, 40],
+      "phrases": ["I'm writing to…", "This note is about…", "I'd like to let you know…"],
+      "profileFields": []
+    },
+    {
+      "id": "details",
+      "label": "Details",
+      "role": "body",
+      "optional": false,
+      "what": "The facts the reader needs.",
+      "tip": "Give real dates, times, places, and numbers. One idea per sentence.",
+      "good": "It will reopen on Friday, Nov 6. The second-floor kitchen stays open.",
+      "bad": "It'll be closed for a while.",
+      "targetWords": [15, 100],
+      "phrases": ["Here's what's changing:", "This starts on [date].", "The main change is…"],
+      "profileFields": []
+    },
+    {
+      "id": "ask",
+      "label": "Ask",
+      "role": "ask",
+      "optional": false,
+      "what": "What you want the reader to do next.",
+      "tip": "Ask for one clear action with a real date.",
+      "good": "Please take your food out of the fridge by Friday, Oct 30.",
+      "bad": "Do whatever.",
+      "targetWords": [5, 35],
+      "phrases": ["Please… by [date].", "Could you…?", "Let me know by [date] if…"],
+      "profileFields": []
+    },
+    {
+      "id": "closing",
+      "label": "Closing",
+      "role": "closing",
+      "optional": false,
+      "what": "A polite thank-you and sign-off.",
+      "tip": "Thank them and sign off.",
+      "good": "Thank you,\nPriya",
+      "bad": "bye",
+      "targetWords": [1, 15],
+      "phrases": ["Thank you,", "Thanks for your help,", "Best regards,"],
+      "profileFields": []
+    }
+  ],
+  "topics": []
+}

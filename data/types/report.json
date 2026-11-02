@@ -1,0 +1,119 @@
+{
+  "_header": "Created by: Brennan Meyer with use of Claude Code 10/28/2026 Santa Clarita, CA / brennanmmeyer@gmail.com",
+  "id": "report",
+  "name": "Short Report",
+  "useWhen": "Use this to report what happened, how a project is going, or what you found and recommend.",
+  "order": 5,
+  "readingTarget": 50,
+  "sections": [
+    {
+      "id": "title",
+      "label": "Title",
+      "role": "header",
+      "optional": false,
+      "what": "A short title, plus the date and your name on the next lines.",
+      "tip": "Say what the report is about. Add the date and who wrote it.",
+      "good": "Parking Lot Lighting Review\nOctober 28, 2026\nPrepared by Jordan Reyes",
+      "bad": "report",
+      "targetWords": [3, 20],
+      "phrases": ["[Topic] Report", "[Project] Progress Report — [month]", "Prepared by [your name]"],
+      "profileFields": []
+    },
+    {
+      "id": "summary",
+      "label": "Summary",
+      "role": "body",
+      "optional": false,
+      "what": "The whole report in 2 or 3 sentences, main point first.",
+      "tip": "Most readers stop here. Give the bottom line up front.",
+      "good": "Three of the eight parking lot lights are out. The lot is unsafe after 6 p.m. We recommend new long-life fixtures for all eight lights by Nov 20.",
+      "bad": "This report is about some lighting stuff.",
+      "targetWords": [20, 80],
+      "phrases": [],
+      "profileFields": [],
+      "framework": "bluf"
+    },
+    {
+      "id": "background",
+      "label": "Background",
+      "role": "body",
+      "optional": false,
+      "what": "Why this report exists and what you looked at.",
+      "tip": "Two to four sentences. Who asked, what you checked, and when.",
+      "good": "After two staff members reported tripping on Oct 15, the manager asked for a lighting check. I checked the lot on Oct 20 and 21 after dark.",
+      "bad": "People complained so I looked into it.",
+      "targetWords": [20, 100],
+      "phrases": ["[Name] asked me to look into…", "On [date], I…", "I reviewed…"],
+      "profileFields": []
+    },
+    {
+      "id": "findings",
+      "label": "Findings",
+      "role": "body",
+      "optional": false,
+      "what": "What you found: facts, numbers, and dates.",
+      "tip": "One finding per paragraph. Use real numbers.",
+      "good": "Lights 2, 5, and 7 do not turn on. The other five are dim and use old bulbs that cost $60 each per year to run.",
+      "bad": "A lot of the lights are bad.",
+      "targetWords": [30, 200],
+      "phrases": ["We found that…", "[Number] of [total]…", "Compared with last month, …"],
+      "profileFields": []
+    },
+    {
+      "id": "recommendation",
+      "label": "Recommendation",
+      "role": "ask",
+      "optional": false,
+      "what": "What you recommend doing next, and why.",
+      "tip": "Make your case with one reason and one example, then restate the next step.",
+      "good": "We recommend new long-life fixtures for all eight lights by Nov 20.",
+      "bad": "Someone should probably do something.",
+      "targetWords": [20, 120],
+      "phrases": [],
+      "profileFields": [],
+      "framework": "prep"
+    }
+  ],
+  "topics": [
+    {
+      "id": "general",
+      "name": "General",
+      "tone": "Objective and organized. Facts first, opinions labeled.",
+      "dos": ["Put the main point in the Summary", "Use real numbers and dates", "Keep findings separate from recommendations"],
+      "donts": ["Guess without saying so", "Use jargon", "Write one giant paragraph"]
+    },
+    {
+      "id": "incident",
+      "name": "Incident Report",
+      "tone": "Factual and calm. What happened, in order, without blame.",
+      "dos": ["Give the exact date, time, and place", "Describe what you saw or heard, and name who told you anything you didn't see", "List who was involved and any injuries or damage"],
+      "donts": ["Guess at causes", "Blame anyone", "Leave out the time"],
+      "sectionOverrides": {
+        "findings": {
+          "label": "What happened (STAR)",
+          "what": "Tell what happened in order, using Situation, Task, Action, Result.",
+          "tip": "Stick to facts. For Task, say what you were doing or responsible for at the time.",
+          "framework": "star",
+          "targetWords": [40, 200]
+        }
+      }
+    },
+    {
+      "id": "progress",
+      "name": "Progress Report",
+      "tone": "Honest and forward-looking. Done, in progress, and blocked.",
+      "dos": ["Say what's done, what's next, and any problems", "Compare to the plan or deadline", "Give dates for next steps"],
+      "donts": ["Hide delays", "Only list good news", "Be vague about next steps"],
+      "sectionOverrides": {
+        "findings": {
+          "label": "Progress",
+          "what": "What's done, what's in progress, and anything blocking you.",
+          "tip": "Use three short paragraphs: Done. In progress. Problems.",
+          "good": "Done: we installed the new shelves in aisles 1–4. In progress: aisles 5–8, finishing Nov 6. Problem: two shelf brackets arrived broken; new ones ship Nov 2.",
+          "bad": "Things are going okay mostly.",
+          "phrases": ["Done: …", "In progress: …", "Problem: …", "Next: …"]
+        }
+      }
+    }
+  ]
+}

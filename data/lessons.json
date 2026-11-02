@@ -1,0 +1,57 @@
+{
+  "_header": "Created by: Brennan Meyer with use of Claude Code 11/01/2026 Santa Clarita, CA / brennanmmeyer@gmail.com",
+  "_note": "Write for your reader: short lessons shown in the 7 C's guide. Ideas follow Purdue OWL's business writing pages (tone, audience, and prioritizing concerns) and plain-language guides. Every line except 'bad' must pass the app's own checks (tests/preaches.test.ts).",
+  "source": "Based on Purdue OWL's business writing guides and plain-language guides.",
+  "lessons": [
+    {
+      "id": "big-first",
+      "title": "Fix the big problems first",
+      "points": [
+        "Start with what's missing and whether your point is clear. Then look at order and tone.",
+        "Save spelling and word choice for last. A perfect sentence in the wrong place still has to move.",
+        "The 7 C's check screens go in this order for that reason."
+      ]
+    },
+    {
+      "id": "you-attitude",
+      "title": "Write from the reader's side",
+      "points": [
+        "Ask what the reader gets out of your message, and say that part first.",
+        "Use \"you\" and \"your\" when it's about them. Use \"I\" when you take the blame or make a promise."
+      ],
+      "bad": "We are pleased to announce that our office will now open at 8 a.m.",
+      "good": "You can now stop by our office as early as 8 a.m."
+    },
+    {
+      "id": "bad-news",
+      "title": "Giving bad news",
+      "points": [
+        "Thank the reader or name a point you agree on first.",
+        "Say the no in plain words, with one reason. Don't hide it in the middle.",
+        "Offer one real next step if you have one. Don't blame a person by name."
+      ],
+      "bad": "Unfortunately due to policy reasons beyond our control your request cannot be processed at this time.",
+      "good": "Thank you for asking about a refund. We can't refund an order after 30 days, but we can replace the part for free. Reply to this email and we'll ship it Monday."
+    },
+    {
+      "id": "polite-asks",
+      "title": "Asking politely",
+      "points": [
+        "\"Please\" alone can still sound like an order. A question sounds kinder.",
+        "Try \"Could you…\", \"Would you be able to…\", or \"I'd appreciate it if…\".",
+        "Give the reason in one short sentence, and a real date."
+      ],
+      "bad": "Please send me the form.",
+      "good": "Could you send me the W-2 form by Friday, Nov 13? I need it to finish my taxes."
+    },
+    {
+      "id": "plain-words",
+      "title": "Plain words aren't simple-minded",
+      "points": [
+        "Use the words your reader uses. Plain writing isn't talking down to them.",
+        "Short headings and short paragraphs help a busy reader find their part.",
+        "Put the main point in the first paragraph. Put what to do next in the last."
+      ]
+    }
+  ]
+}

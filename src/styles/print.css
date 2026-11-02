@@ -1,0 +1,30 @@
+/* Created by: Brennan Meyer with use of Claude Code 10/28/2026 Santa Clarita, CA */
+/* brennanmmeyer@gmail.com */
+
+/* Print view: white paper, black text, 1" margins, 12 pt, US Letter.
+   The page margin is 0 so the browser has no room to print its own
+   date/title header and footer; the 1" margins come from padding on the
+   sides plus a 1" spacer row that repeats at the top and bottom of every
+   printed page (table header/footer rows repeat across pages). */
+
+@page {
+  size: 8.5in 11in;
+  margin: 0;
+}
+
+@media print {
+  html, body { background: #fff !important; color: #000 !important; height: auto; display: block; margin: 0; }
+  body > *:not(#print-root) { display: none !important; }
+  #print-root { display: block !important; }
+  .print-table { width: 100%; border-collapse: collapse; }
+  .print-table td { padding: 0 1in; }
+  .print-spacer { height: 1in; }
+  .print-page {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 12pt;
+    line-height: 1.15;
+    color: #000;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+  }
+}

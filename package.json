@@ -1,0 +1,40 @@
+{
+  "name": "bez-pro-write",
+  "private": true,
+  "license": "GPL-3.0-or-later",
+  "version": "1.3.0",
+  "type": "module",
+  "scripts": {
+    "voice": "node tools/get-voice.mjs",
+    "predev": "node tools/get-voice.mjs",
+    "dev": "vite",
+    "prebuild": "node tools/get-voice.mjs",
+    "build": "tsc --noEmit && vite build",
+    "build:web": "tsc --noEmit && vite build --mode web",
+    "test": "vitest run",
+    "tauri": "tauri"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "3.8.1",
+    "@tauri-apps/api": "2.12.4",
+    "@tauri-apps/plugin-clipboard-manager": "2.5.0",
+    "@tauri-apps/plugin-dialog": "2.8.4",
+    "@tauri-apps/plugin-fs": "2.7.1",
+    "docx": "9.15.0",
+    "harper.js": "3.0.0",
+    "idb-keyval": "6.2.2",
+    "kokoro-js": "1.2.1",
+    "mammoth": "^1.13.0",
+    "syllable": "5.0.1"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "2.12.4",
+    "@types/node": "22.13.10",
+    "fflate": "0.8.3",
+    "happy-dom": "21.0.4",
+    "typescript": "5.9.3",
+    "vite": "8.3.5",
+    "vitest": "5.0.5",
+    "write-good": "1.0.8"
+  }
+}

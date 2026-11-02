@@ -1,0 +1,215 @@
+{
+  "_header": "Created by: Brennan Meyer with use of Claude Code 10/28/2026 Santa Clarita, CA / brennanmmeyer@gmail.com",
+  "id": "email",
+  "name": "Email",
+  "useWhen": "Use this for an email to a boss, coworker, teacher, or company.",
+  "order": 1,
+  "readingTarget": 60,
+  "sections": [
+    {
+      "id": "subject",
+      "label": "Subject line",
+      "role": "header",
+      "optional": false,
+      "what": "A short line that tells the reader what the email is about before they open it.",
+      "tip": "Say the topic and any date in under 10 words. No \"Hi\" or \"Quick question.\"",
+      "good": "Lease copy needed by Friday, Nov 6",
+      "bad": "hey",
+      "targetWords": [3, 10],
+      "phrases": ["Request: [what you need] by [date]", "Follow-up on [topic] from [date]", "Question about [topic]", "Meeting request: [topic], [day]"],
+      "profileFields": [],
+      "prefix": "Subject: ",
+      "gapBefore": 0
+    },
+    {
+      "id": "greeting",
+      "label": "Greeting",
+      "role": "greeting",
+      "optional": false,
+      "what": "The first line that says hello to the reader by name.",
+      "tip": "Use their name. For a boss, customer, teacher, or stranger, use \"Dear\" or \"Hello\" and their title.",
+      "good": "Hello Ms. Alvarez,",
+      "bad": "Hey!!",
+      "targetWords": [2, 5],
+      "phrases": ["Hello Mr. Lee,", "Dear Dr. Patel,", "Hi Sam,", "Dear Hiring Manager,", "Good morning, Ms. Chen,"],
+      "profileFields": []
+    },
+    {
+      "id": "purpose",
+      "label": "Purpose",
+      "role": "body",
+      "optional": false,
+      "what": "Why you are writing, in one or two sentences.",
+      "tip": "Put your main point first. The reader should know why you wrote after the first sentence.",
+      "good": "I'm writing to ask for a copy of my lease by Friday, Nov 6.",
+      "bad": "I just wanted to reach out about some stuff.",
+      "targetWords": [10, 40],
+      "phrases": ["I'm writing to ask about…", "I'd like to request…", "I'm reaching out because…", "This email is about…"],
+      "profileFields": []
+    },
+    {
+      "id": "details",
+      "label": "Details",
+      "role": "body",
+      "optional": false,
+      "what": "The facts the reader needs: dates, times, places, numbers, and names.",
+      "tip": "Give each fact in plain words. Keep sentences short. One idea per sentence.",
+      "good": "My lease started on March 1, 2025. I need the copy for a car loan application due Monday, Nov 9.",
+      "bad": "So basically there's a lot going on and I need it for things soon.",
+      "targetWords": [20, 100],
+      "phrases": ["The [thing] is due on [date].", "Here are the details:", "This affects [who/what] because…", "For reference, my account number is…"],
+      "profileFields": []
+    },
+    {
+      "id": "ask",
+      "label": "Ask",
+      "role": "ask",
+      "optional": false,
+      "what": "The one action you want the reader to take next, and the date.",
+      "tip": "Ask for one clear action with a real date. Make it easy to say yes.",
+      "good": "Could you email the copy to me by Friday, Nov 6?",
+      "bad": "Let me know ASAP.",
+      "targetWords": [8, 35],
+      "phrases": ["Could you please… by [date]?", "Would you be able to…?", "Please let me know by [date] if…", "Can we meet on [day] at [time]?"],
+      "profileFields": []
+    },
+    {
+      "id": "closing",
+      "label": "Closing",
+      "role": "closing",
+      "optional": false,
+      "what": "A polite thank-you and a sign-off word before your name.",
+      "tip": "Thank them, then use a sign-off like \"Best regards,\" or \"Thank you,\".",
+      "good": "Thank you for your help.\n\nBest regards,",
+      "bad": "k thx",
+      "targetWords": [2, 15],
+      "phrases": ["Thank you for your time.", "Thanks for your help.", "I appreciate your help.", "Best regards,", "Sincerely,", "Thank you,"],
+      "profileFields": []
+    },
+    {
+      "id": "signature",
+      "label": "Signature",
+      "role": "signature",
+      "optional": false,
+      "what": "Your full name and how to reach you.",
+      "tip": "Your full name, then your title or phone if it helps the reader.",
+      "good": "Jordan Reyes\n(661) 555-0142",
+      "bad": "J",
+      "targetWords": [2, 20],
+      "phrases": [],
+      "profileFields": ["name", "title", "phone", "email"],
+      "gapBefore": 0
+    }
+  ],
+  "topics": [
+    {
+      "id": "general",
+      "name": "General",
+      "tone": "Friendly and to the point. Say why you're writing up front.",
+      "dos": ["Put your main point in the first sentence", "Use a clear subject line", "Keep it under 200 words if you can"],
+      "donts": ["Write a wall of text", "Use slang or emoji", "Forget to say what you need"]
+    },
+    {
+      "id": "request",
+      "name": "Request",
+      "tone": "Polite and specific. Make it easy to say yes.",
+      "dos": ["Name what you need: the item, the amount, the date", "Give a real deadline", "Explain why it matters in one sentence"],
+      "donts": ["Demand or say \"ASAP\"", "Bury the ask at the bottom of a long paragraph", "Ask for several unrelated things at once"],
+      "sectionOverrides": {
+        "purpose": {
+          "tip": "Say what you're asking for in the first sentence.",
+          "phrases": ["I'm writing to request…", "Could you help me with…?", "I'd like to ask for…"]
+        }
+      }
+    },
+    {
+      "id": "follow-up",
+      "name": "Follow-up",
+      "tone": "Patient and helpful. Remind, don't scold.",
+      "dos": ["Say what you're following up on and when you first wrote", "Repeat the key facts briefly", "Give a new clear date"],
+      "donts": ["Say \"As I already said\" or \"Per my last email\"", "Sound annoyed", "Send it the same day as the first email"],
+      "sectionOverrides": {
+        "purpose": {
+          "tip": "Name the earlier email or meeting and its date.",
+          "good": "I'm following up on my Oct 28 email about the lease copy.",
+          "bad": "Per my last email, I still need that thing.",
+          "phrases": ["I'm following up on my email from [date] about…", "I wanted to check in on…", "A quick reminder about…"]
+        }
+      }
+    },
+    {
+      "id": "thank-you",
+      "name": "Thank You",
+      "tone": "Warm and specific. Name what you're thankful for.",
+      "dos": ["Name what they did: the task, the day, the help", "Say how it helped you", "Keep it short"],
+      "donts": ["Be vague (\"thanks for everything\")", "Add a new request in the same email", "Overdo it with exclamation marks"],
+      "sectionOverrides": {
+        "purpose": {
+          "tip": "Say thank you and name what they did.",
+          "good": "Thank you for meeting with me on Tuesday to review my resume.",
+          "bad": "Thanks so much for everything!!!",
+          "phrases": ["Thank you for…", "I appreciate you taking the time to…", "I'm grateful for…"]
+        },
+        "ask": {
+          "what": "An optional next step, or a simple offer to return the favor.",
+          "tip": "You don't need to ask for anything. An offer to help back or a plan to stay in touch works.",
+          "good": "Please let me know if I can return the favor.",
+          "bad": "Anyway can u also send me that other file",
+          "phrases": ["Please let me know if I can return the favor.", "I'll keep you posted on how it goes.", "I look forward to working with you again."]
+        }
+      }
+    },
+    {
+      "id": "teacher",
+      "name": "Asking a Teacher/Instructor",
+      "tone": "Respectful and prepared. Show you've tried first.",
+      "dos": ["Use their title (Professor, Dr., Mr., Ms.)", "Name your class and section", "Say what you already tried"],
+      "donts": ["Start with \"Hey\"", "Ask something the syllabus already answers", "Use text-speak"],
+      "sectionOverrides": {
+        "greeting": { "good": "Dear Professor Kim,", "bad": "hey prof" },
+        "purpose": {
+          "tip": "Name your class, section, and the question in the first two sentences.",
+          "good": "I'm in your English 101 class, section 4, and I have a question about the essay due Nov 12.",
+          "bad": "i have a question about the thing",
+          "phrases": ["I'm in your [class], section [number], and…", "I have a question about…", "I read the syllabus and…"]
+        }
+      }
+    },
+    {
+      "id": "sick",
+      "name": "Calling Out Sick",
+      "tone": "Short and responsible. No need for medical details.",
+      "dos": ["Say which day(s) you'll be out", "Say who is covering or what's handed off", "Say when you'll check in"],
+      "donts": ["Over-explain your symptoms", "Apologize over and over", "Send it after your shift starts"],
+      "sectionOverrides": {
+        "purpose": {
+          "tip": "Say you're sick and which day you'll be out.",
+          "good": "I'm sick and won't be able to work my shift on Wednesday, Oct 28.",
+          "bad": "I feel super gross so im not coming in",
+          "phrases": ["I'm sick and can't work my shift on [date].", "I need to take a sick day on [date]."]
+        },
+        "details": {
+          "what": "What's handed off and who can cover.",
+          "tip": "List any work due that day and who can handle it.",
+          "good": "Dana has the Smith order, and the 2 p.m. call can move to Thursday.",
+          "bad": "Someone can do my stuff."
+        }
+      }
+    },
+    {
+      "id": "meeting",
+      "name": "Meeting Request",
+      "tone": "Clear and flexible. Make it easy to pick a time.",
+      "dos": ["Say what the meeting is for", "Offer two or three exact times", "Say how long it will take and where"],
+      "donts": ["Say \"sometime next week\"", "Leave out the length", "Forget the time zone if it matters"],
+      "sectionOverrides": {
+        "ask": {
+          "tip": "Offer two or three exact times and ask which works.",
+          "good": "Are you free Tuesday, Nov 3 at 10 a.m. or Wednesday, Nov 4 at 2 p.m. for 30 minutes?",
+          "bad": "Can we meet sometime?",
+          "phrases": ["Would [day, date] at [time] work for you?", "Are you free on [day] or [day]?", "The meeting will take about [length] in [place]."]
+        }
+      }
+    }
+  ]
+}

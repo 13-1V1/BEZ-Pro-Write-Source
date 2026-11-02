@@ -1,0 +1,25 @@
+{
+  "_header": "Created by: Brennan Meyer with use of Claude Code 10/30/2026 Santa Clarita, CA / brennanmmeyer@gmail.com",
+  "id": "own",
+  "name": "My own writing",
+  "useWhen": "Use this to check an email or letter you already wrote in another program, like Gmail or Word.",
+  "order": 99,
+  "hidden": true,
+  "readingTarget": 60,
+  "sections": [
+    {
+      "id": "writing",
+      "label": "Your writing",
+      "role": "body",
+      "optional": false,
+      "what": "Paste or type the piece you want to check. The 7 C's screens will point out spots to look at; you make every change yourself.",
+      "tip": "Paste it here. Leave a blank line between paragraphs so the paragraph checks work.",
+      "good": "Hello Ms. Alvarez,\n\nI'm writing to ask for a copy of my lease by Friday, Nov 6.",
+      "bad": "hey can u send the lease thing asap",
+      "targetWords": [1, 3000],
+      "phrases": [],
+      "profileFields": []
+    }
+  ],
+  "topics": []
+}

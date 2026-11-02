@@ -1,0 +1,120 @@
+{
+  "_header": "Created by: Brennan Meyer with use of Claude Code 10/28/2026 Santa Clarita, CA / brennanmmeyer@gmail.com",
+  "id": "memo",
+  "name": "Memo",
+  "useWhen": "Use this for a short notice to people inside your workplace, school, or group.",
+  "order": 2,
+  "readingTarget": 60,
+  "sections": [
+    {
+      "id": "heading",
+      "label": "To / From / Date / Subject",
+      "role": "header",
+      "optional": false,
+      "what": "Four lines: To, From, Date, and Subject.",
+      "tip": "Type each label, a colon, then the detail. One per line.",
+      "good": "To: All Front Desk Staff\nFrom: Jordan Reyes, Office Manager\nDate: October 28, 2026\nSubject: New time sheet deadline",
+      "bad": "to everyone\nimportant!!",
+      "targetWords": [10, 35],
+      "phrases": ["To: [who]", "From: [your name, title]", "Date: [Month day, year]", "Subject: [topic in a few words]"],
+      "profileFields": []
+    },
+    {
+      "id": "purpose",
+      "label": "Purpose",
+      "role": "body",
+      "optional": false,
+      "what": "The main point, first: Bottom Line Up Front.",
+      "tip": "Readers skim memos. The first sentence should tell them what changed or what to do.",
+      "good": "Starting Monday, Nov 2, all time sheets are due by 5 p.m. Friday.",
+      "bad": "I wanted to share some thoughts about time sheets.",
+      "targetWords": [12, 60],
+      "phrases": ["Starting [date], …", "This memo explains…", "Please note that…"],
+      "profileFields": [],
+      "framework": "bluf"
+    },
+    {
+      "id": "background",
+      "label": "Background",
+      "role": "body",
+      "optional": true,
+      "what": "Short context: what led to this.",
+      "tip": "Two or three sentences. Skip it if everyone already knows.",
+      "good": "Payroll moved to a new system in October. It needs the weekend to process checks.",
+      "bad": "So basically a lot of stuff happened.",
+      "targetWords": [10, 80],
+      "phrases": ["This change is because…", "Last month, …"],
+      "profileFields": []
+    },
+    {
+      "id": "details",
+      "label": "Details",
+      "role": "body",
+      "optional": false,
+      "what": "The facts people need: dates, times, places, who it affects.",
+      "tip": "Short sentences. A new paragraph for each new topic.",
+      "good": "Submit time sheets in the Payroll app. Payroll pays late time sheets the following week.",
+      "bad": "Do the time sheets the normal way but different.",
+      "targetWords": [15, 150],
+      "phrases": ["This affects…", "Here's what changes:", "Nothing else changes."],
+      "profileFields": []
+    },
+    {
+      "id": "action",
+      "label": "Action needed",
+      "role": "ask",
+      "optional": false,
+      "what": "What each reader must do, and by when.",
+      "tip": "One clear action with a date. Say who to ask with questions.",
+      "good": "Please submit this week's time sheet by 5 p.m. Friday, Oct 30. Questions? Email Dana at payroll@example.com.",
+      "bad": "Get it done.",
+      "targetWords": [8, 50],
+      "phrases": ["Please… by [date].", "If you have questions, contact…", "You don't need to do anything unless…"],
+      "profileFields": []
+    }
+  ],
+  "topics": [
+    {
+      "id": "general",
+      "name": "General",
+      "tone": "Brief and businesslike. Main point first.",
+      "dos": ["Put the main point in the first sentence", "Keep it to one page", "Say who to ask with questions"],
+      "donts": ["Add a greeting or sign-off (memos don't use them)", "Bury the action at the end of a long paragraph", "Use jargon"]
+    },
+    {
+      "id": "policy",
+      "name": "Policy Change",
+      "tone": "Clear and neutral. Explain what changes and when.",
+      "dos": ["Give the start date", "Name what's different from the old way", "Explain why in one or two sentences"],
+      "donts": ["Sound like you're scolding", "Leave out who it applies to", "Use vague words like \"soon\""],
+      "sectionOverrides": {
+        "details": {
+          "tip": "Show the old rule and the new rule side by side.",
+          "good": "Old: time sheets due Monday at noon. New: due Friday at 5 p.m.",
+          "phrases": ["Old: … New: …", "This applies to…", "This doesn't change…"]
+        }
+      }
+    },
+    {
+      "id": "meeting",
+      "name": "Meeting Notice",
+      "tone": "Practical. Make it easy to show up prepared.",
+      "dos": ["Give day, date, time, and place", "Say what the meeting is for", "Say what to bring or read first"],
+      "donts": ["Say \"next week sometime\"", "Leave out the length", "Forget the room or link"],
+      "sectionOverrides": {
+        "details": {
+          "tip": "List the when, where, how long, and what to bring.",
+          "good": "When: Thursday, Nov 5, 10–10:30 a.m. Where: Conference Room B. Bring: your Q3 numbers.",
+          "phrases": ["When: …", "Where: …", "Bring: …", "Agenda: …"]
+        }
+      }
+    },
+    {
+      "id": "announcement",
+      "name": "Announcement",
+      "tone": "Upbeat but professional. Share the news in plain words.",
+      "dos": ["Say the news in the first sentence", "Give dates and names", "Say what it means for the reader"],
+      "donts": ["Overuse exclamation marks", "Hide the news", "Make it too long"]
+    }
+  ]
+}

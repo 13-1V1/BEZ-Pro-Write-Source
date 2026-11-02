@@ -1,0 +1,21 @@
+## subject
+Lease copy needed by Friday, Nov 6
+## greeting
+Hello Ms. Alvarez,
+## purpose
+I'm writing to ask for a copy of my lease for Unit 4B by Friday, Nov 6.
+## details
+My lease started on March 1, 2025. My bank needs the copy for a car loan.
+
+Because the loan closes on Monday, Nov 9, I need the copy before then.
+## ask
+Could you email the copy to me by Friday, Nov 6?
+## closing
+Thank you for your help.
+
+Best regards,
+## signature
+Jordan Reyes
+Office Manager
+(661) 555-0142
+jordan.reyes@example.com

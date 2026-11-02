@@ -1,0 +1,270 @@
+{
+  "_header": "Created by: Brennan Meyer with use of Claude Code 10/28/2026 Santa Clarita, CA / brennanmmeyer@gmail.com",
+  "id": "letter",
+  "name": "Business Letter",
+  "useWhen": "Use this for a formal message on paper or PDF to a company, landlord, school, or office.",
+  "order": 3,
+  "readingTarget": 60,
+  "sections": [
+    {
+      "id": "your-address",
+      "label": "Your address",
+      "role": "header",
+      "optional": false,
+      "what": "Your street address, then city, state, and ZIP, each on its own line.",
+      "tip": "Don't put your name here. It goes in the signature.",
+      "good": "24510 Main Street, Apt 3\nSanta Clarita, CA 91321",
+      "bad": "my place",
+      "targetWords": [4, 20],
+      "phrases": [],
+      "profileFields": ["address"],
+      "gapBefore": 1
+    },
+    {
+      "id": "date",
+      "label": "Date",
+      "role": "header",
+      "optional": false,
+      "what": "Today's date, written out in full.",
+      "tip": "Write the month as a word: October 28, 2026.",
+      "good": "October 28, 2026",
+      "bad": "10/28",
+      "targetWords": [3, 4],
+      "phrases": ["[Month] [day], [year]"],
+      "profileFields": []
+    },
+    {
+      "id": "their-address",
+      "label": "Their name and address",
+      "role": "header",
+      "optional": false,
+      "what": "The reader's name and title, company, street, and city, state, ZIP.",
+      "tip": "One item per line. Use their title if you know it.",
+      "good": "Ms. Dana Alvarez\nProperty Manager\nOak Ridge Apartments\n1200 Oak Ridge Road\nValencia, CA 91355",
+      "bad": "the office",
+      "targetWords": [4, 30],
+      "phrases": [],
+      "profileFields": []
+    },
+    {
+      "id": "greeting",
+      "label": "Greeting",
+      "role": "greeting",
+      "optional": false,
+      "what": "\"Dear\" plus their title and last name, then a colon or comma.",
+      "tip": "Use their title and last name if you know it.",
+      "good": "Dear Ms. Alvarez:",
+      "bad": "Hey there!",
+      "targetWords": [2, 5],
+      "phrases": ["Dear Mr. Lee:", "Dear Dr. Patel:", "Dear Hiring Manager:", "To Whom It May Concern:"],
+      "profileFields": []
+    },
+    {
+      "id": "purpose",
+      "label": "Purpose",
+      "role": "body",
+      "optional": false,
+      "what": "Why you're writing, in one or two sentences.",
+      "tip": "Say why you're writing in one or two sentences.",
+      "good": "I'm writing to request a copy of my lease by Friday, Nov 6.",
+      "bad": "I just wanted to reach out about some stuff.",
+      "targetWords": [15, 40],
+      "phrases": ["I'm writing to…", "I'd like to request…", "I'm writing about…"],
+      "profileFields": []
+    },
+    {
+      "id": "details",
+      "label": "Details",
+      "role": "body",
+      "optional": false,
+      "what": "The facts: dates, numbers, names, and anything the reader needs to act.",
+      "tip": "Put facts in the order they happened. Start a new paragraph for each new topic.",
+      "good": "I moved into Unit 4B on March 1, 2025. My bank needs the lease for a car loan due Monday, Nov 9.",
+      "bad": "There's a lot going on and I need it for reasons.",
+      "targetWords": [30, 150],
+      "phrases": ["For reference, my account number is…", "On [date], …", "This matters because…"],
+      "profileFields": []
+    },
+    {
+      "id": "ask",
+      "label": "Ask",
+      "role": "ask",
+      "optional": false,
+      "what": "The one action you want them to take next, and the date.",
+      "tip": "Make one clear request with a real date and how to reach you.",
+      "good": "Please mail or email the copy by Friday, Nov 6. You can reach me at (661) 555-0142.",
+      "bad": "Get back to me.",
+      "targetWords": [10, 45],
+      "phrases": ["Please… by [date].", "Could you…?", "I would appreciate a reply by [date]."],
+      "profileFields": []
+    },
+    {
+      "id": "closing",
+      "label": "Closing",
+      "role": "closing",
+      "optional": false,
+      "what": "A thank-you line and a formal sign-off word.",
+      "tip": "Thank them, then \"Sincerely,\" on its own line.",
+      "good": "Thank you for your help.\n\nSincerely,",
+      "bad": "Later,",
+      "targetWords": [1, 15],
+      "phrases": ["Thank you for your time.", "I appreciate your help with this.", "Sincerely,", "Respectfully,", "Best regards,"],
+      "profileFields": []
+    },
+    {
+      "id": "signature",
+      "label": "Signature",
+      "role": "signature",
+      "optional": false,
+      "what": "Your typed full name, plus title and contact info if useful. Leave room above it to sign by hand.",
+      "tip": "Your full name, then your title, phone, or email.",
+      "good": "Jordan Reyes\n(661) 555-0142\njordan.reyes@example.com",
+      "bad": "J",
+      "targetWords": [2, 20],
+      "phrases": [],
+      "profileFields": ["name", "title", "phone", "email", "signature"],
+      "gapBefore": 3
+    }
+  ],
+  "topics": [
+    {
+      "id": "general",
+      "name": "General",
+      "tone": "Formal and clear. Get to the point in the first paragraph.",
+      "dos": ["Use full addresses and the date", "Say why you're writing in the first two sentences", "Keep it to one page"],
+      "donts": ["Use slang or emoji", "Write one huge paragraph", "Forget to sign it"]
+    },
+    {
+      "id": "thank-you",
+      "name": "Thank You",
+      "tone": "Warm, sincere, and specific.",
+      "dos": ["Name what they did: the task, the day, the help", "Say how it helped", "Send it within a week"],
+      "donts": ["Be vague", "Add a new request", "Make it about you"],
+      "sectionOverrides": {
+        "purpose": {
+          "tip": "Say thank you and name what they did.",
+          "good": "Thank you for writing my reference letter for the Valley College nursing program.",
+          "bad": "Thanks for everything!!",
+          "phrases": ["Thank you for…", "I'm grateful for…", "I want to thank you for…"]
+        },
+        "ask": {
+          "what": "An optional next step, like an update or an offer to help back.",
+          "tip": "You don't have to ask for anything. Offer an update or to return the favor.",
+          "good": "I'll let you know when I hear back in December.",
+          "bad": "Also can you do another one",
+          "phrases": ["I'll keep you updated on…", "Please let me know if I can return the favor."]
+        }
+      }
+    },
+    {
+      "id": "apology",
+      "name": "Apology",
+      "tone": "Own it. Skip the excuses. Say how you'll fix it.",
+      "dos": ["Say sorry in the first sentence", "Name what went wrong, in plain words", "Say what you'll do next"],
+      "donts": ["Blame others", "Over-explain", "Say \"sorry if you were offended\""],
+      "sectionOverrides": {
+        "purpose": {
+          "tip": "Say what happened and that you're sorry.",
+          "good": "I'm writing to apologize for the late payment of my October rent.",
+          "bad": "I guess I should say sorry about the rent thing.",
+          "phrases": ["I'm sorry for…", "I apologize for…", "I'm writing to apologize for…"]
+        },
+        "details": {
+          "what": "Walk through the four parts of a real apology.",
+          "tip": "Fill in each box. Keep each one short and honest.",
+          "framework": "apology",
+          "targetWords": [25, 150]
+        }
+      }
+    },
+    {
+      "id": "complaint",
+      "name": "Complaint",
+      "tone": "Firm and calm. Stick to facts and ask for a fair fix.",
+      "dos": ["Give dates, order numbers, and names", "Describe what happened, not how angry you are", "Ask for a specific fix"],
+      "donts": ["Insult anyone", "Use ALL CAPS or lots of !!!", "Threaten unless you mean it"],
+      "sectionOverrides": {
+        "purpose": {
+          "tip": "Name the problem and the order or account number.",
+          "good": "I'm writing about order #48213, which arrived damaged on Oct 26.",
+          "bad": "YOUR COMPANY IS THE WORST!!!",
+          "phrases": ["I'm writing about a problem with…", "I'm writing to report…"]
+        },
+        "details": {
+          "what": "Describe the problem without blame: Situation, Behavior, Impact.",
+          "tip": "Facts only. Anyone reading it should agree it happened.",
+          "framework": "sbi",
+          "targetWords": [25, 150]
+        },
+        "ask": {
+          "tip": "Ask for one fair fix: refund, replacement, or repair, with a date.",
+          "good": "Please send a replacement desk by Friday, Nov 6, or refund my $289.",
+          "bad": "Fix it or else.",
+          "phrases": ["Please refund…", "I'd like a replacement by [date].", "Please contact me by [date] to…"]
+        }
+      }
+    },
+    {
+      "id": "request",
+      "name": "Request",
+      "tone": "Polite and specific. Make it easy to say yes.",
+      "dos": ["Name what you need: the item, the amount, the date", "Give a reason", "Give a real deadline"],
+      "donts": ["Demand", "Ask for many unrelated things", "Leave out how to reach you"],
+      "sectionOverrides": {
+        "details": {
+          "what": "Make your case: Point, Reason, Example, Point again.",
+          "tip": "Give the one best reason and a real example.",
+          "framework": "prep",
+          "targetWords": [25, 150]
+        }
+      }
+    },
+    {
+      "id": "resignation",
+      "name": "Resignation",
+      "tone": "Grateful and professional. Leave on good terms.",
+      "dos": ["Give your last day", "Thank them for a specific project, lesson, or kindness", "Offer to help with the handoff"],
+      "donts": ["Complain about the job or people", "Over-explain why you're leaving", "Forget your last day"],
+      "sectionOverrides": {
+        "purpose": {
+          "tip": "Say you're resigning and give your last day.",
+          "good": "I'm resigning from my position as Sales Associate. My last day will be Friday, Nov 13.",
+          "bad": "I'm out.",
+          "phrases": ["Please accept this letter as notice that I'm resigning from…", "My last day will be…"]
+        },
+        "details": {
+          "what": "A short thank-you and your plan for the handoff.",
+          "tip": "Thank them for one real moment or lesson. Say how you'll wrap up your work.",
+          "good": "Thank you for training me on the register and inventory system. Before I go, I'll finish the November schedule and show Sam the reorder process.",
+          "bad": "This place was okay I guess.",
+          "phrases": ["Thank you for…", "Before my last day, I'll…", "I'm happy to help train…"]
+        },
+        "ask": {
+          "tip": "Ask how they'd like to handle the handoff, or confirm next steps.",
+          "good": "Please let me know if there's anything else you'd like me to finish before Nov 13.",
+          "phrases": ["Please let me know how I can help with the transition."]
+        }
+      }
+    },
+    {
+      "id": "reference",
+      "name": "Reference Request",
+      "tone": "Respectful and easy to say yes to. Give them what they need.",
+      "dos": ["Remind them how they know you", "Say what the reference is for and the deadline", "Offer your resume or details"],
+      "donts": ["Assume they'll say yes", "Give a deadline of tomorrow", "Forget to thank them"],
+      "sectionOverrides": {
+        "purpose": {
+          "tip": "Ask if they'd be willing to be a reference, and for what.",
+          "good": "I'm applying for a Medical Assistant job at Henry Mayo Hospital and would be grateful if you'd serve as a reference.",
+          "bad": "Can u be my reference",
+          "phrases": ["Would you be willing to serve as a reference for…?", "I'm applying for… and would be grateful if…"]
+        },
+        "details": {
+          "tip": "Remind them how they know you and what you did together.",
+          "good": "I worked for you at Valley Clinic from June 2023 to August 2025, where I handled patient check-in.",
+          "phrases": ["You may remember me from…", "I worked with you at… from… to…"]
+        }
+      }
+    }
+  ]
+}
