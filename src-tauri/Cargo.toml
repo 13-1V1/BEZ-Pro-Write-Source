@@ -2,7 +2,7 @@
 # brennanmmeyer@gmail.com
 [package]
 name = "bez-pro-write"
-version = "1.4.0"
+version = "1.4.1"
 description = "BEZ Pro Write: guided professional writing with the 7 C's"
 authors = ["Brennan Meyer"]
 license = "GPL-3.0-or-later"

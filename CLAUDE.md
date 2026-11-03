@@ -11,7 +11,7 @@ Desktop app for Windows and Mac (Tauri 2 + plain TypeScript/Vite, no UI framewor
 walks a beginner through writing an email, memo, letter, cover letter, or short report
 using the 7 C's. Full spec: `docs/BUILD_BRIEF.md` (the original plan; some later decisions are
 recorded inside it with dates, the rest live in "Decisions" below — where they differ, the
-Decisions list and the code win). Current version: 1.4.0.
+Decisions list and the code win). Current version: 1.4.1.
 
 ## The #1 rule
 The app never writes or rewrites the user's words. Checks only point at text, never fix it.
@@ -76,6 +76,7 @@ The only auto-filled text is the user's own saved sender profile.
 - The `syllable` package miscounts a few words (e.g. "cooperation" = 4). Use correctly-counted words in hand-checked tests.
 - Print sets `@page { margin: 0 }` so the webview can't add its date/title header; the 1" margins come from side padding (both in `src/styles/print.css`) plus repeating table header/footer spacer rows built in `src/export/print.ts`.
 - `saveDraft` rolls the saved time back if the write fails, so a failed save never shows "Saved" — keep it that way.
+- The MSI uses our own WiX template `src-tauri/wix/main.wxs` (Tauri CLI 2.12.4's, minus `Icon="ProductIcon"` on the Start menu shortcut). That icon is stored under `C:\Windows\Installer\{product code}\`, which every upgrade deletes, so pinned taskbar icons went blank. Re-copy the template when the Tauri CLI is upgraded.
 - Python heredocs through the Bash tool mangle `\\` and `\'`; write scripts to the scratchpad, or use the Edit tool.
 - The Bash tool runs sandboxed: files it writes under `%APPDATA%` are NOT seen by the installed app. Seed test drafts with the PowerShell tool.
 - Computer-use can't see the dev build (not installed); drive it with `WScript.Shell` SendKeys + `snap-window.ps1`, or test the installed build (`C:\Program Files\BEZ Pro Write\`).
