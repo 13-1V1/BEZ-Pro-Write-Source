@@ -1,7 +1,7 @@
 {
   "$schema": "../gen/schemas/desktop-schema.json",
   "identifier": "default",
-  "description": "Main window: app storage commands, Save As dialog, writing exported files, clipboard, zooming with Ctrl +/-, printing (on a Mac, window.print goes through the webview print command), and closing the window after the last save.",
+  "description": "Main window: app storage commands, Save As dialog, writing exported files, clipboard, opening a mailto: link in the email app, zooming with Ctrl +/-, printing (on a Mac, window.print goes through the webview print command), and closing the window after the last save.",
   "windows": [
     "main"
   ],
@@ -13,6 +13,11 @@
     "dialog:allow-save",
     "fs:allow-write-file",
     "fs:allow-write-text-file",
-    "clipboard-manager:allow-write-text"
+    "clipboard-manager:allow-write-text",
+    "clipboard-manager:allow-read-text",
+    {
+      "identifier": "opener:allow-open-url",
+      "allow": [{ "url": "mailto:*" }]
+    }
   ]
 }

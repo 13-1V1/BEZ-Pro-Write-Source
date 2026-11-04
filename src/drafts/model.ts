@@ -38,12 +38,29 @@ export interface Draft {
   /** Sections already filled from the profile, so clearing one doesn't refill it. */
   profileFilled: Record<string, boolean>;
   checklist: Record<string, Record<number, Answer>>;
-  /** Spots the user looked at and marked "This one's fine" (keys from flagKey). */
+  /** Spots the user looked at and marked "This one's fine" (each spot's `key` from markFine; a plain flagKey is an older mark that covers every copy). */
   fine: string[];
   /** Check something I wrote: paragraph number → the part it is, so those checks run. */
   tags: Record<string, TagRole>;
   /** Set when this draft is a practice exercise (see data/practice.json). */
   practiceId?: string;
+  /** Which wording of the 7 C's questions the checklist answers belong to (see QUESTIONS_VERSION). */
+  questions?: number;
+}
+
+/**
+ * Checklist answers are stored by question number. Bump this when a question's
+ * meaning flips, and list what to clear in REWORDED, so an old answer can't
+ * silently say the opposite.
+ */
+export const QUESTIONS_VERSION = 2;
+/** 11/02/2026 (version 2): Concise #2 and Courteous #2 reworded so "Yes" is the good answer. */
+const REWORDED: Record<string, string[]> = { concise: ['1'], courteous: ['1'] };
+
+function upgradeChecklist(list: Record<string, Record<number, Answer>>, from: number): Record<string, Record<number, Answer>> {
+  if (from >= QUESTIONS_VERSION) return list;
+  for (const [c, nums] of Object.entries(REWORDED)) for (const n of nums) if (list[c]) delete (list[c] as Record<string, Answer>)[n];
+  return list;
 }
 
 export function newDraft(): Draft {
@@ -66,6 +83,7 @@ export function newDraft(): Draft {
     checklist: {},
     fine: [],
     tags: {},
+    questions: QUESTIONS_VERSION,
   };
 }
 
@@ -109,9 +127,10 @@ export function normalizeDraft(raw: Partial<Draft>): Draft {
     parts: Object.fromEntries(Object.entries(only(r.parts, isObj)).map(([k, v]) => [k, only(v, isStr)])),
     skipped: only(r.skipped, isBool),
     profileFilled: only(r.profileFilled, isBool),
-    checklist: Object.fromEntries(
+    checklist: upgradeChecklist(Object.fromEntries(
       Object.entries(only(r.checklist, isObj)).map(([k, v]) => [k, only(v, isAnswer) as Record<number, Answer>]),
-    ),
+    ), num('questions', 1)),
+    questions: QUESTIONS_VERSION,
     fine: Array.isArray(r.fine) ? r.fine.filter(isStr) : [],
     tags: only(r.tags, (x): x is TagRole => TAG_ROLES.includes(x as TagRole)),
   };

@@ -27,14 +27,27 @@ export async function loadDraft(id: string): Promise<Draft | null> {
   return raw && typeof raw.id === 'string' ? normalizeDraft(raw) : null;
 }
 
-export async function listDrafts(): Promise<Draft[]> {
+export interface DraftList {
+  drafts: Draft[];
+  /** Draft files that exist but couldn't be read, so Home can say so instead of hiding them. */
+  unreadable: string[];
+}
+
+export async function listDrafts(): Promise<DraftList> {
   const names = (await listFiles('drafts')).filter((n) => n.endsWith('.json'));
-  const drafts: Draft[] = [];
-  for (const n of names) {
-    const d = await loadDraft(n.slice(0, -5));
-    if (d) drafts.push(d);
+  // A file that isn't text at all makes the read itself fail; one bad file never hides the rest.
+  const loaded = await Promise.all(names.map((n) => loadDraft(n.slice(0, -5)).catch(() => null)));
+  const drafts = loaded.filter((d) => d !== null).sort((a, b) => b.saved - a.saved);
+  return { drafts, unreadable: names.filter((_, i) => !loaded[i]) };
+}
+
+/** Tells a damaged draft from a deleted one, since loadDraft gives nothing for both. */
+export async function draftFileExists(id: string): Promise<boolean> {
+  try {
+    return (await listFiles('drafts')).includes(`${id}.json`);
+  } catch {
+    return true;
   }
-  return drafts.sort((a, b) => b.saved - a.saved);
 }
 
 export async function deleteDraft(id: string): Promise<void> {

@@ -12,6 +12,7 @@ export interface Pair {
 }
 
 export const LIST_DEFS = {
+  'my-words': { label: 'My dictionary', pairs: false, help: 'Words the spelling check accepts in every piece. A word you take off comes back after the app restarts.' },
   wordy: { label: 'Wordy phrases', pairs: true, help: 'Phrase plus a shorter way to say it.' },
   simpler: { label: 'Simpler words', pairs: true, help: 'Hard word plus an everyday word.' },
   filler: { label: 'Filler words', pairs: false, help: 'Words that usually add nothing.' },
@@ -21,6 +22,7 @@ export const LIST_DEFS = {
   'common-acronyms': { label: 'Common acronyms (OK to use)', pairs: false, help: 'Acronyms everyone knows, so they are not flagged.' },
   slang: { label: 'Slang and text-speak', pairs: false, help: 'Too casual for professional writing.' },
   harsh: { label: 'Bossy or harsh words', pairs: false, help: 'Words that can sound rude or demanding.' },
+  unsure: { label: 'Unsure phrases', pairs: false, help: 'Phrases that make a clear point sound like a guess.' },
   transitions: { label: 'Transition words', pairs: false, help: 'Words that link one paragraph to the last.' },
   adverbs: { label: 'Adverbs', pairs: false, help: '-ly words, pointed out only next to a weak verb (see the next list).' },
   'weak-verbs': { label: 'Weak verbs', pairs: false, help: 'Plain verbs like "walked" or "said". An adverb next to one is pointed out, since one stronger verb often does both jobs.' },

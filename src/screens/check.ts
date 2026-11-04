@@ -23,7 +23,10 @@ import { h } from '../ui/dom';
 import { renderHighlighted } from '../ui/highlight';
 import { lock } from '../ui/lock';
 import { speakButton } from '../ui/speak';
+import { setForC } from '../practice/drills';
+import { drillPage } from './drill';
 import { guidePage } from './guide';
+import { addToDictionary, listsWith, stopPointing } from './teach';
 
 /** What to call the suggestion line for each kind of check. */
 const USE_LABEL: Record<string, string> = { simpler: 'Simpler word: ', wordy: 'Shorter way: ', spelling: 'Spelling ideas: ', 'lowercase-i': 'Should be: ' };
@@ -54,7 +57,7 @@ function pointLabel(p: PlanPoint): string {
   return 'A clear ask (a question or request)';
 }
 
-function flagLabel(f: Flag): string {
+export function flagLabel(f: Flag): string {
   const name = CHECK_INFO[f.check]?.label ?? f.check;
   return f.text && f.end > f.start ? `${name}: “${short(f.text, 50)}”` : f.text ? `${name}: ${short(f.text)}` : name;
 }
@@ -70,11 +73,11 @@ function itemsFor(app: App, c: CId, flags: Flag[]): Item[] {
     for (const p of planPoints(checkInput(app))) {
       const f = p.spot ? undefined : mine.find((x) => !used.has(x) && x.check === POINT_CHECK[p.kind] && (p.kind === 'ask' || x.text === p.text));
       if (f) used.add(f);
-      items.push({ key: f ? flagKey(f) : `point|${p.kind}|${p.text}`, label: pointLabel(p), flag: f ?? null, found: p.spot });
+      items.push({ key: f ? f.key! : `point|${p.kind}|${p.text}`, label: pointLabel(p), flag: f ?? null, found: p.spot });
     }
   }
   for (const f of [...mine].filter((x) => !used.has(x)).sort((a, b) => pos(a) - pos(b)))
-    items.push({ key: flagKey(f), label: flagLabel(f), flag: f, found: null });
+    items.push({ key: f.key!, label: flagLabel(f), flag: f, found: null });
   return items;
 }
 
@@ -111,10 +114,11 @@ export function checkScreen(app: App, step: Step): ScreenView {
   const listCard = h('section', { class: 'card items-card', 'aria-label': 'Things to look at' },
     h('div', { class: 'card-head' }, h('h2', null, 'Things to look at'), progress), list);
 
-  const goEdit = (sectionId: string | null) => {
+  const goEdit = (sectionId: string | null, f?: Flag) => {
     // A whole-piece note (a missing fact) has no part of its own: open the first body part.
     const id = sectionId ?? usedSections(d, app.sections).find((s) => s.role === 'body')?.id ?? app.sections.find((s) => s.role === 'body')?.id;
     if (!id) return;
+    app.spot = f && f.end > f.start ? { start: f.start, end: f.end } : null;
     app.returnTo = step.key;
     app.go(`write:${id}`);
   };
@@ -128,8 +132,9 @@ export function checkScreen(app: App, step: Step): ScreenView {
 
   // "It's fine": the user looked and decided to keep it. The words are never touched.
   const setFine = (f: Flag, fine: boolean) => {
-    const key = flagKey(f);
-    d.fine = fine ? [...new Set([...d.fine, key])] : d.fine.filter((k) => k !== key);
+    const key = f.key!;
+    // An older draft's mark is the plain flagKey and covers every copy, so taking it back reopens them all.
+    d.fine = fine ? [...new Set([...d.fine, key])] : d.fine.filter((k) => k !== key && k !== flagKey(f));
     app.changed();
     app.refreshSide();
   };
@@ -147,17 +152,39 @@ export function checkScreen(app: App, step: Step): ScreenView {
     }
     const ci = CHECK_INFO[f.check];
     const fineNow = !!f.fine;
+    // Teaching the app can take several rows away at once, so open the first one left.
+    const teach = (run: () => Promise<void>) => async () => {
+      try {
+        await run();
+        currentKey = null;
+        opened = false;
+        draw();
+        app.refreshSide();
+      } catch (e) {
+        console.error('Saving a word list failed', e);
+        app.say("That couldn't be saved. Nothing changed.");
+      }
+    };
+    const lists = listsWith(f, app.data.lists);
+    const teachBtn = f.unknownWord
+      ? btn('Add to my dictionary', () => void teach(() => addToDictionary(app, f.text))())
+      : lists.length ? btn('Stop pointing at this word', () => void teach(() => stopPointing(app, lists, f.text))()) : null;
+    const drills = setForC(c);
     return h('div', { class: 'body' },
       lock(h('p', null, ci?.why ?? '')),
       f.detail ? lock(h('p', { class: 'muted' }, f.detail)) : null,
       f.use ? lock(h('p', null, h('strong', null, USE_LABEL[f.check] ?? 'For example: '), f.use)) : null,
       lock(h('p', { class: 'try' }, h('strong', null, 'Try this: '), ci?.try ?? '')),
       h('div', { class: 'acts' },
-        btn('Change my words', () => goEdit(f.sectionId), true),
+        btn('Change my words', () => goEdit(f.sectionId, f), true),
         fineNow
           ? btn('Look at it again', () => { setFine(f, false); draw(); })
           : btn("It's fine, next ›", () => { setFine(f, true); advance(it.key); draw(); }),
-        fineNow ? null : btn('Skip for now', () => { skipped.add(it.key); advance(it.key); draw(); })));
+        fineNow ? null : btn('Skip for now', () => { skipped.add(it.key); advance(it.key); draw(); }),
+        teachBtn),
+      teachBtn || drills ? h('p', { class: 'muted small' },
+        teachBtn ? 'You can change this later in Settings, on the Word rules tab. ' : null,
+        drills ? h('button', { class: 'link-btn', on: { click: () => void app.goPage((a, back) => drillPage(a, back, drills)) } }, 'Practice this') : null) : null);
   };
 
   const drawList = () => {
@@ -173,7 +200,7 @@ export function checkScreen(app: App, step: Step): ScreenView {
     const rows = items.map((it) => {
       const open = it.key === currentKey;
       const doneNow = isDone(it);
-      const tag = it.flag ? (it.flag.fine ? 'marked fine' : it.flag.sectionId ? `in ${sectionLabel(it.flag.sectionId)}` : 'not found') : `found in ${sectionLabel(it.found!.sectionId)}`;
+      const tag = it.flag ? (it.flag.fine ? 'marked fine' : it.flag.sectionId ? `in ${sectionLabel(it.flag.sectionId)}` : it.flag.c === 'complete' ? 'not found' : 'whole piece') : `found in ${sectionLabel(it.found!.sectionId)}`;
       const head = h('button', { class: 'row', 'aria-expanded': String(open),
         on: { click: () => { currentKey = open ? null : it.key; draw(); } } },
         h('span', { class: 'mark', 'aria-hidden': 'true' }, doneNow ? '✓' : '○'),
@@ -196,7 +223,7 @@ export function checkScreen(app: App, step: Step): ScreenView {
     const extra: Flag[] = current?.found && !current.flag
       ? [{ c, check: 'plan-point', sectionId: current.found.sectionId, start: current.found.start, end: current.found.end, text: '' }]
       : [];
-    const isCurrent = (f: Flag) => (current?.flag ? flagKey(f) === current.key : f.check === 'plan-point');
+    const isCurrent = (f: Flag) => (current?.flag ? f.key === current.key : f.check === 'plan-point');
     const sections = usedSections(d, app.sections);
     textView.replaceChildren(
       h('div', { class: 'check-text-head' }, h('h2', null, 'Your writing'), speakButton(() => sections.map((s) => d.text[s.id] ?? '').join('\n\n'))),
@@ -207,7 +234,7 @@ export function checkScreen(app: App, step: Step): ScreenView {
             h('button', { class: 'btn small', on: { click: () => goEdit(s.id) } }, 'Edit this part')),
           renderHighlighted(d.text[s.id] ?? '', [...mine, ...extra].filter((f) => f.sectionId === s.id), (picked) => {
             // Clicking a highlight opens its row.
-            const it = items.find((x) => x.flag && picked.some((p) => flagKey(p) === x.key));
+            const it = items.find((x) => x.flag && picked.some((p) => p.key === x.key));
             if (it) { currentKey = it.key; draw(); }
           }, isCurrent))));
     if (sections.length === 0) textView.append(h('p', { class: 'muted' }, 'Nothing written yet.'));

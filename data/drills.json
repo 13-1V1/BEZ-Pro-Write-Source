@@ -1,0 +1,54 @@
+{
+  "_header": "Created by: Brennan Meyer with use of Claude Code 11/04/2026 Santa Clarita, CA / brennanmmeyer@gmail.com",
+  "_note": "Two-minute drills. Each line is a made-up bad example the learner rewrites until the spots clear. tests/drills.test.ts checks every line has a spot in its set's C.",
+  "sets": [
+    {
+      "id": "shorter", "title": "Say it shorter", "c": "concise",
+      "blurb": "Rewrite one wordy line until the spots clear.",
+      "lines": [
+        "I just wanted to really say thanks for all of your help.",
+        "Due to the fact that the office is closed, we will basically meet at my desk.",
+        "At this point in time, I am actually still waiting for the form.",
+        "In order to get the refund, you simply need to send the receipt.",
+        "The report is really quite long and it is literally 40 pages.",
+        "In the event that you are late, please call the front desk.",
+        "We very much appreciate the fact that you came in on your day off.",
+        "I would just like to basically go over the plan one more time.",
+        "We are actually pretty much done with the first part of the job.",
+        "For the purpose of saving time, I will honestly keep this short."
+      ]
+    },
+    {
+      "id": "when", "title": "Say exactly when", "c": "concrete",
+      "blurb": "Swap fuzzy words for a real date, time, or number.",
+      "lines": [
+        "Please send it ASAP.",
+        "I'll get back to you soon.",
+        "We need a lot of chairs for the event.",
+        "The meeting is sometime next week.",
+        "Some of the numbers are off.",
+        "Can you finish it by EOD?",
+        "Several people complained about the thing.",
+        "It will be ready in a while.",
+        "I'll call you later about the stuff.",
+        "The new prices start in the near future."
+      ]
+    },
+    {
+      "id": "polite", "title": "Sound polite", "c": "courteous",
+      "blurb": "Turn a bossy or unsure line into a kind, clear one.",
+      "lines": [
+        "You need to send this now.",
+        "PLEASE READ THE WHOLE FORM BEFORE YOU CALL.",
+        "You obviously didn't read my email.",
+        "I demand a refund immediately.",
+        "I think the form might be late, does that make sense?",
+        "Sorry to bother you, but I guess I need the file.",
+        "This is unacceptable and it must stop!!!",
+        "You should have told me this before.",
+        "I expect an answer from you today, no excuses.",
+        "Hopefully this is right, but I could be wrong."
+      ]
+    }
+  ]
+}

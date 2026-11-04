@@ -7,7 +7,7 @@
 import { CS, C_IDS } from '../checks/cs';
 import { flagsFor, spotsIn } from '../checks/run';
 import { loadSnapshots } from '../drafts/snapshots';
-import { assemble } from '../export/assemble';
+import { assemble, splitSubject } from '../export/assemble';
 import type { App, ScreenView } from '../flow/app';
 import { computeStats } from '../scores/stats';
 import { h } from '../ui/dom';
@@ -18,7 +18,7 @@ import { versionsPanel } from './versions';
 
 export function finishScreen(app: App): ScreenView {
   const d = app.draft!;
-  const piece = assemble(d, app.sections);
+  const finished = assemble(d, app.sections).text;
   const stats = computeStats(app);
   const flags = flagsFor(app);
 
@@ -46,9 +46,9 @@ export function finishScreen(app: App): ScreenView {
     h('p', { class: 'lead' }, 'Read it over one last time, then copy, save, or print it.'),
     fixedNote(app),
     h('div', { class: 'field' }, h('label', { for: 'draft-title' }, 'Name this draft'), titleInput),
-    exportButtons(app, piece.text),
-    h('p', null, speakButton(() => piece.text)),
-    h('pre', { class: 'preview final', 'aria-label': 'Your finished piece' }, piece.text || 'Nothing written yet.'),
+    exportButtons(app, finished, splitSubject(d, app.sections)),
+    h('p', null, speakButton(() => finished)),
+    h('pre', { class: 'preview final', 'aria-label': 'Your finished piece' }, finished || 'Nothing written yet.'),
     h('section', { class: 'scorecard' },
       h('h2', null, 'Scorecard'),
       h('div', { class: 'score-totals' },

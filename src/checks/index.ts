@@ -14,7 +14,7 @@ import { correct } from './correct';
 import { courteous } from './courteous';
 import { goalLate } from './goal';
 import type { CId } from './cs';
-import type { CheckInput, Flag } from './types';
+import type { CheckInput, CheckSection, Flag } from './types';
 
 export interface CheckInfo {
   c: CId;
@@ -64,16 +64,50 @@ export function weightedTotal(flags: Flag[]): number {
 }
 
 /**
- * Names one spot by what it is, not where it is, so "This one's fine" survives
+ * Names a spot by what it is, not where it is, so "This one's fine" survives
  * edits elsewhere in the piece (offsets move; the check and the words don't).
+ * Copies of the same words share this key; markFine's `key` tells them apart.
  */
 export function flagKey(f: Flag): string {
   return `${f.check}|${f.sectionId ?? ''}|${f.text.trim().toLowerCase()}`;
 }
 
-/** Mark the spots the user already said are fine. */
-export function markFine(flags: Flag[], fine: readonly string[]): Flag[] {
-  if (fine.length === 0) return flags;
+const WORD = /[\p{L}\p{N}'’-]+/gu;
+const REACH = 40;
+
+/** The word on each side of a spot, so copies of the same words can be told apart. */
+function neighbors(text: string, f: Flag): string {
+  const before = text.slice(Math.max(0, f.start - REACH), f.start).match(WORD);
+  const after = text.slice(f.end, f.end + REACH).match(WORD);
+  return `${before?.[before.length - 1] ?? ''}~${after?.[0] ?? ''}`.toLowerCase();
+}
+
+/**
+ * Give each spot its own key and mark the ones the user already said are fine.
+ * The same words twice in one part ("really" ... "really") are separate spots,
+ * told apart by the words beside them, so a mark stays on its own spot when
+ * another copy is edited away. If the words beside it change, the spot just
+ * opens again. Identical copies with identical neighbors add "#2", "#3".
+ * A plain flagKey in `fine` is a mark from an older draft: it covers every copy.
+ */
+export function markFine(flags: Flag[], fine: readonly string[], sections: readonly CheckSection[] = []): Flag[] {
   const set = new Set(fine);
-  return flags.map((f) => (set.has(flagKey(f)) ? { ...f, fine: true } : f));
+  const textOf = new Map(sections.map((s) => [s.section.id, s.text]));
+  const same = new Map<string, Flag[]>();
+  for (const f of flags) {
+    const text = f.end > f.start && f.sectionId ? textOf.get(f.sectionId) : undefined;
+    const key = text === undefined ? flagKey(f) : `${flagKey(f)}|${neighbors(text, f)}`;
+    const group = same.get(key);
+    if (group) group.push(f);
+    else same.set(key, [f]);
+  }
+  const keys = new Map<Flag, string>();
+  for (const [key, group] of same) {
+    if (group.length > 1) group.sort((a, b) => a.start - b.start);
+    group.forEach((f, i) => keys.set(f, i === 0 ? key : `${key}#${i + 1}`));
+  }
+  return flags.map((f) => {
+    const key = keys.get(f)!;
+    return set.size > 0 && (set.has(key) || set.has(flagKey(f))) ? { ...f, key, fine: true } : { ...f, key };
+  });
 }

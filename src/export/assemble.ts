@@ -35,3 +35,15 @@ export function assemble(draft: Draft, sections: Section[]): Piece {
   }
   return { text, parts };
 }
+
+/** An email's subject and the rest, for the two boxes in a real email. Null when there's no subject line. */
+export function splitSubject(draft: Draft, sections: Section[]): { subject: string; message: string } | null {
+  const line = usedSections(draft, sections).find((s) => /^subject:/i.test(s.prefix ?? ''));
+  if (!line) return null;
+  return { subject: (draft.text[line.id] ?? '').trim(), message: assemble(draft, sections.filter((s) => s !== line)).text };
+}
+
+/** The finished piece as it leaves the app: spaces left at the end of a line are cut (they never show, but they ride along in a paste). */
+export function tidyEnds(text: string): string {
+  return text.replace(/[ \t]+$/gm, '');
+}

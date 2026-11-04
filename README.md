@@ -5,7 +5,7 @@
 
 **A step-by-step coach for professional writing. You type every word; it shows you how.**
 
-BEZ Pro Write walks you through an email, memo, business letter, cover letter, or short report one easy screen at a time. It then checks the result against the **7 C's**: Clear, Concise, Concrete, Correct, Coherent, Complete, and Courteous. It points at spots worth a second look and explains why. It never rewrites your words.
+BEZ Pro Write walks you through an email, chat message, memo, business letter, cover letter, or short report one easy screen at a time. It then checks the result against the **7 C's**: Clear, Concise, Concrete, Correct, Coherent, Complete, and Courteous. It points at spots worth a second look and explains why. It never rewrites your words.
 
 Works fully offline on Windows and Mac. No account, no internet, no AI.
 
@@ -17,13 +17,13 @@ Works fully offline on Windows and Mac. No account, no internet, no AI.
 - **Writing frameworks.** STAR, BLUF, PREP, an apology formula, and SBI break harder parts into small guided boxes.
 - **The 7 C's check.** Big problems first (Complete, Clear, Coherent, Courteous), then the polish (Concise, Concrete, Correct). Every flagged spot is highlighted with a color *and* a letter badge. Click one to see why and what to try instead, step through them with **F3**, or mark one "This one's fine" if you're keeping it.
 - **Live scores.** Readability (0–100), a style score, word count, and reading time, all updating as you type.
-- **Check something I wrote.** Paste an email or letter you wrote in another program, or open a .txt or Word file, and run the 7 C's checks on it. Mark which paragraph is your greeting, Ask, and closing, and those get checked too.
-- **Practice.** Sixteen made-up situations over three levels. They fill in your plan, you write the rest, and harder levels open as you go.
+- **Check something I wrote.** Paste an email or letter you wrote in another program, press Check what I copied, or open or drag in a .txt or Word file, and run the 7 C's checks on it. Mark which paragraph is your greeting, Ask, and closing, and those get checked too.
+- **Practice.** Sixteen made-up situations over three levels. They fill in your plan, you write the rest, and harder levels open as you go. Two-minute drills have you rewrite one bad line while the real checks clear.
 - **Your progress.** See which C's are improving, which one to work on next, your style score over time, and how each kind of writing is going (Help → Your progress).
 - **Earlier versions.** Look back at your writing from before your changes, see what you changed word by word, and restore it if you want.
-- **Read it aloud.** Hear your writing in your computer's own voice, the way your reader will.
-- **Export.** Copy, save as .txt or Word (.docx), or print / save as PDF on US Letter with 1" margins.
-- **Your rules.** Turn off any check, set a readability goal per type, and add or remove words from any word list.
+- **Read it aloud.** Hear your writing the way your reader will, in a natural offline voice, or your computer's own voice where that can't run.
+- **Export.** Copy, save as .txt or Word (.docx), or print / save as PDF on US Letter with 1" margins. An email copies its subject and message apart, or opens in your email app.
+- **Your rules.** Turn off any check, set a readability goal per type, and add or remove words from any word list. A check can teach the app too: add a word to My dictionary, or stop it pointing at a word.
 
 Press **F1** anytime for the built-in 7 C's guide.
 

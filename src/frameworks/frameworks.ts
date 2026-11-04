@@ -47,6 +47,22 @@ function load(): { frameworks: Record<string, Framework>; problems: string[] } {
 
 export const { frameworks: FRAMEWORKS, problems: FRAMEWORK_PROBLEMS } = load();
 
+/** Which part's box holds a spot in the joined text, and where inside that box. */
+export function partSpot(fw: Framework, answers: Record<string, string>, start: number, end: number): { partId: string; start: number; end: number } | null {
+  let at = 0;
+  for (const p of fw.parts) {
+    const raw = answers[p.id] ?? '';
+    const words = raw.trim();
+    if (!words) continue;
+    if (start < at + words.length) {
+      const lead = raw.length - raw.trimStart().length - at;
+      return { partId: p.id, start: start + lead, end: Math.min(end, at + words.length) + lead };
+    }
+    at += words.length + 1;
+  }
+  return null;
+}
+
 /** Join the part answers into the section's text: one paragraph, in order. */
 export function joinParts(fw: Framework, answers: Record<string, string>): string {
   return fw.parts

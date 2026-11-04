@@ -80,12 +80,12 @@ A small Windows desktop app that walks a beginner, step by step, through writing
 | C | Checklist questions |
 |---|---|
 | **Clear** | Is your main point in the first 2 sentences? Does each sentence have one idea? Would a stranger understand every word? |
-| **Concise** | Did you cut words that add nothing? Is anything said twice? |
+| **Concise** | Did you cut words that add nothing? Is each point said only once? |
 | **Concrete** | Did you use real dates, numbers, and names instead of "soon," "some," "tomorrow"? Did you name exact places, amounts, or people instead of "they" or "it"? |
 | **Correct** | Are all names, dates, and numbers right? Did you fix the flagged spelling, grammar, and slang? |
 | **Coherent** | Does each paragraph stick to one topic? Does the order make sense from start to finish? |
 | **Complete** | Does it answer who, what, when, where, and why? Does the reader know exactly what to do next? |
-| **Courteous** | Did you greet and thank the reader properly (if this type has a greeting)? Is there any word that sounds bossy, annoyed, or too excited? |
+| **Courteous** | Did you greet and thank the reader properly (if this type has a greeting)? Does every word sound calm and polite, with nothing bossy, annoyed, or too excited? (Every question is worded so "Yes" is the good answer.) |
 
 ## 6. Highlights (point, never fix)
 

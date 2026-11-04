@@ -25,6 +25,10 @@ export interface Flag {
   detail?: string;
   /** The user looked at it and said "This one's fine": still shown (grayed), not counted. */
   fine?: boolean;
+  /** A word the spell checker doesn't know, so it can go in My dictionary. */
+  unknownWord?: boolean;
+  /** This spot's own key (set by markFine): flagKey plus the words beside it, so copies of the same words differ. */
+  key?: string;
 }
 
 export interface CheckSection {
@@ -42,6 +46,8 @@ export interface CheckInput {
   relationships: Record<string, { tip: string; formalGreeting: boolean }>;
   /** Harper results per section id, when available. */
   spell?: Record<string, SpellIssue[]>;
+  /** When the piece was last worked on: a date with no year means the nearest one. Without it, weekdays aren't checked. */
+  now?: number;
 }
 
 /** Sentence-level checks skip address blocks, dates, To/From lines, and signatures. */

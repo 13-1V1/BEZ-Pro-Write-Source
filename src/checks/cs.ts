@@ -48,7 +48,7 @@ export const CS: Record<CId, CInfo> = {
     badge: 'CS',
     color: 'var(--c-concise)',
     definition: 'Every word earns its place. Nothing extra.',
-    questions: ['Did you cut words that add nothing?', 'Is anything said twice?'],
+    questions: ['Did you cut words that add nothing?', 'Is each point said only once?'],
     reminders: ['Look at the yellow highlights for filler and wordy phrases.', 'Read it out loud and cut any repeat.'],
   },
   concrete: {
@@ -98,7 +98,7 @@ export const CS: Record<CId, CInfo> = {
     definition: 'Polite and respectful, even when you\'re asking for help.',
     questions: [
       'Did you greet and thank the reader properly (if this type has a greeting)?',
-      'Is there any word that sounds bossy, annoyed, or too excited?',
+      'Does every word sound calm and polite, with nothing bossy, annoyed, or too excited?',
     ],
     reminders: ['Use their name in the greeting (if there is one) and thank them in the closing.', 'Soften bossy words: "Could you…" instead of "You must…".'],
   },

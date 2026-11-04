@@ -40,12 +40,12 @@ export function checkInput(app: App, d: Draft = app.draft!, live = true): CheckI
   const issues = asWritten.flatMap((t) => cachedSpelling(t) ?? []);
   for (const s of sections) spell[s.section.id] = tagged ? issues.filter((i) => s.text[i.start]?.trim()) : cachedSpelling(s.text) ?? [];
   if (live) checkWhenIdle(asWritten, () => onSpellReady?.(), () => teachNames(app));
-  return { sections, allSections: all, prep: d.prep, lists: app.data.lists, relationships: app.data.relationships, spell };
+  return { sections, allSections: all, prep: d.prep, lists: app.data.lists, relationships: app.data.relationships, spell, now: d.saved || d.created };
 }
 
 /** Run the checks, drop the ones turned off, mark the "fine" ones, and point tagged parts back at the box. */
 function flagsOf(app: App, input: CheckInput, d: Draft): Flag[] {
-  const flags = markFine(activeFlags(runChecks(input), app.data.prefs.disabledChecks), d.fine);
+  const flags = markFine(activeFlags(runChecks(input), app.data.prefs.disabledChecks), d.fine, input.sections);
   return d.typeId === OWN_TYPE ? backToBox(flags, input.sections[0]?.section.id.split('~')[0] ?? '', input.sections) : flags;
 }
 

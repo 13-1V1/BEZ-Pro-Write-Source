@@ -1,0 +1,183 @@
+{
+  "_header": "Created by: Brennan Meyer with use of Claude Code 11/04/2026 Santa Clarita, CA / brennanmmeyer@gmail.com",
+  "id": "message",
+  "name": "Chat Message",
+  "useWhen": "Use this for a short work message in Teams, Slack, or a text.",
+  "order": 1.5,
+  "readingTarget": 70,
+  "sections": [
+    {
+      "id": "greeting",
+      "label": "Greeting",
+      "role": "greeting",
+      "optional": true,
+      "what": "A short hello with the reader's name. Skip it if you're already talking.",
+      "tip": "Use their first name, unless they're a boss or customer you don't know well.",
+      "good": "Hi Sam,",
+      "bad": "Hey u there??",
+      "targetWords": [
+        1,
+        4
+      ],
+      "phrases": [
+        "Hi Sam,",
+        "Good morning, Ms. Chen,",
+        "Hello team,"
+      ],
+      "profileFields": []
+    },
+    {
+      "id": "point",
+      "label": "Main point",
+      "role": "body",
+      "optional": false,
+      "what": "What you need or what the reader should know, in one or two sentences.",
+      "tip": "Say the whole point in your first message. Don't send \"Hi\" and wait for a reply.",
+      "good": "The Nov 6 client report needs your numbers by 3 p.m.",
+      "bad": "Got a sec?",
+      "targetWords": [
+        5,
+        35
+      ],
+      "phrases": [
+        "I need [item] by [time].",
+        "Update on [topic]:",
+        "Do you know [question]?"
+      ],
+      "profileFields": []
+    },
+    {
+      "id": "details",
+      "label": "Details",
+      "role": "body",
+      "optional": true,
+      "what": "Only the facts the reader needs to act: a date, a link, a name.",
+      "tip": "Keep it short enough to read on a phone. Long news belongs in an email.",
+      "good": "The file is in the Reports folder. Page 2 is the only part left.",
+      "bad": "So basically here's the whole backstory on how this all started.",
+      "targetWords": [
+        5,
+        50
+      ],
+      "phrases": [
+        "The file is in [place].",
+        "We still need [part]."
+      ],
+      "profileFields": []
+    },
+    {
+      "id": "ask",
+      "label": "Ask",
+      "role": "ask",
+      "optional": false,
+      "what": "The one step you want the reader to take, and by when.",
+      "tip": "Ask one clear question or give one next step with a time.",
+      "good": "Can you send them by 3 p.m.?",
+      "bad": "Let me know, whenever.",
+      "targetWords": [
+        3,
+        20
+      ],
+      "phrases": [
+        "Can you [action] by [time]?",
+        "Please reply by [time].",
+        "Would [time] work for you?"
+      ],
+      "profileFields": []
+    }
+  ],
+  "topics": [
+    {
+      "id": "general",
+      "name": "General",
+      "tone": "Friendly and to the point.",
+      "dos": [
+        "Put your whole point in one message",
+        "Keep it short enough for a phone",
+        "Use a real time or date"
+      ],
+      "donts": [
+        "Send \"Hi\" and wait",
+        "Send five messages in a row",
+        "Share private news in a group chat"
+      ],
+      "sectionOverrides": {}
+    },
+    {
+      "id": "question",
+      "name": "Asking a Question",
+      "tone": "Direct and polite. Make it easy to answer.",
+      "dos": [
+        "Ask the question in your first message",
+        "Say what you already tried",
+        "Say when you need the answer"
+      ],
+      "donts": [
+        "Ask \"Are you there?\" first",
+        "Ask three things at once"
+      ],
+      "sectionOverrides": {
+        "point": {
+          "tip": "Put the question itself first, with what the reader needs to answer it.",
+          "good": "Which version of the Nov 6 report should I send the client?",
+          "bad": "Quick question.",
+          "phrases": [
+            "Which [item] should I use for [task]?",
+            "Do you know when [event] starts?"
+          ]
+        }
+      }
+    },
+    {
+      "id": "update",
+      "name": "Giving an Update",
+      "tone": "Calm and clear. News first, then what's next.",
+      "dos": [
+        "Say the news in your first sentence",
+        "Say what happens next",
+        "Say if you need anything"
+      ],
+      "donts": [
+        "Bury bad news at the end",
+        "Tag everyone when one person needs it"
+      ],
+      "sectionOverrides": {
+        "point": {
+          "tip": "Say where the work stands now, in one sentence.",
+          "good": "The client report is done and went out at 2 p.m.",
+          "bad": "So I've been working on things and it's going okay.",
+          "phrases": [
+            "[Task] is done.",
+            "[Task] will finish on [date].",
+            "[Task] is late because [reason]."
+          ]
+        }
+      }
+    },
+    {
+      "id": "late",
+      "name": "Running Late or Out",
+      "tone": "Short and responsible. Say when you'll be there.",
+      "dos": [
+        "Send it the minute you know",
+        "Give a real arrival time",
+        "Say who is covering, if you can"
+      ],
+      "donts": [
+        "Give a long excuse",
+        "Say \"soon\""
+      ],
+      "sectionOverrides": {
+        "point": {
+          "tip": "Say you're late or out, and give a real time.",
+          "good": "I'm running late and will be in by 9:30 a.m.",
+          "bad": "Gonna be late sorry!!",
+          "phrases": [
+            "I'm running late and will be in by [time].",
+            "I'm out sick on [date]."
+          ]
+        }
+      }
+    }
+  ]
+}

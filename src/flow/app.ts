@@ -70,6 +70,8 @@ export class App {
   steps: Step[] = [];
   /** Set when a 7 C's screen sends the user back to edit a section. */
   returnTo: string | null = null;
+  /** Words to select when the next write screen opens (from "Change my words"). */
+  spot: { start: number; end: number } | null = null;
   private root: HTMLElement;
   private dirty = false;
   private saving: Promise<void> = Promise.resolve();

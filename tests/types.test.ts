@@ -25,7 +25,7 @@ const byId = (id: string) => types.find((t) => t.id === id)!;
 
 describe('v1 types and topics (brief §8)', () => {
   const expected: Record<string, { sections: string[]; topics: string[] }> = {
-    email: { sections: ['header', 'greeting', 'body', 'body', 'ask', 'closing', 'signature'], topics: ['General', 'Request', 'Follow-up', 'Thank You', 'Asking a Teacher/Instructor', 'Calling Out Sick', 'Meeting Request'] },
+    email: { sections: ['header', 'greeting', 'body', 'body', 'ask', 'closing', 'signature'], topics: ['General', 'Request', 'Follow-up', 'Thank You', 'Asking a Teacher/Instructor', 'Calling Out Sick', 'Meeting Request', 'Reply', 'Saying No', 'Introducing Yourself'] },
     memo: { sections: ['header', 'body', 'body', 'body', 'ask'], topics: ['General', 'Policy Change', 'Meeting Notice', 'Announcement'] },
     letter: { sections: ['header', 'header', 'header', 'greeting', 'body', 'body', 'ask', 'closing', 'signature'], topics: ['General', 'Thank You', 'Apology', 'Complaint', 'Request', 'Resignation', 'Reference Request'] },
     'cover-letter': { sections: ['greeting', 'body', 'body', 'body', 'ask', 'closing', 'signature'], topics: ['General', 'Entry-Level', 'Career Change'] },

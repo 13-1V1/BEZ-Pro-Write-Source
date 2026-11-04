@@ -210,6 +210,140 @@
           "phrases": ["Would [day, date] at [time] work for you?", "Are you free on [day] or [day]?", "The meeting will take about [length] in [place]."]
         }
       }
+    },
+    {
+      "id": "reply",
+      "name": "Reply",
+      "tone": "Clear and helpful. Answer first, then add anything else.",
+      "dos": [
+        "Answer their question in your first sentence",
+        "Answer every question they asked",
+        "Say what happens next"
+      ],
+      "donts": [
+        "Repeat their whole email back to them",
+        "Leave a question unanswered",
+        "Make them read to the end for the answer"
+      ],
+      "sectionOverrides": {
+        "subject": {
+          "tip": "Keep their subject line, so the reader can find the whole conversation.",
+          "good": "Re: Lease copy needed by Friday, Nov 6",
+          "bad": "re re re fwd",
+          "phrases": [
+            "Re: [their subject]"
+          ]
+        },
+        "purpose": {
+          "tip": "Give the answer first. The reader asked, so that's what they want.",
+          "good": "Yes, I can send the lease copy by Friday, Nov 6.",
+          "bad": "Thanks for your email, I got it and I'm going to look into things.",
+          "phrases": [
+            "Yes, I can…",
+            "Thank you for asking about [topic]. The answer is…",
+            "Here is the [item] you asked for."
+          ]
+        },
+        "details": {
+          "tip": "Answer each of their other questions. A short numbered list works well for more than two.",
+          "good": "The copy will come from our office on Thursday, Nov 5. It covers all 12 months of your lease.",
+          "bad": "Please see below for everything regarding the matter."
+        }
+      }
+    },
+    {
+      "id": "saying-no",
+      "name": "Saying No",
+      "tone": "Kind and firm. Say no once, then offer what you can.",
+      "dos": [
+        "Thank them for asking",
+        "Say no in one plain sentence",
+        "Give one honest reason, if you can",
+        "Offer another way to help"
+      ],
+      "donts": [
+        "Hide the no inside a long story",
+        "Say \"maybe\" when you mean no",
+        "Apologize over and over"
+      ],
+      "sectionOverrides": {
+        "purpose": {
+          "tip": "Thank them, then say no in plain words. Don't make the reader guess.",
+          "good": "Thank you for inviting me to lead the Nov 12 training. I can't take it on.",
+          "bad": "So sorry, this is super tough, maybe I could possibly try but probably not.",
+          "phrases": [
+            "Thank you for thinking of me. I can't…",
+            "Thank you for asking. This time I have to say no.",
+            "I appreciate the offer, and I won't be able to…"
+          ]
+        },
+        "details": {
+          "tip": "Give one honest reason. You don't owe the reader a long story.",
+          "good": "My team's report is due Nov 13, and it needs all my time until then.",
+          "bad": "Well, there are so many things going on right now, you know how it is."
+        },
+        "ask": {
+          "tip": "Offer what you can do, or who else could help. If there's nothing to offer, wish them well.",
+          "good": "Would Ms. Lee be a good fit? I can also help in December.",
+          "bad": "Good luck with that.",
+          "phrases": [
+            "Would [name] be a good fit?",
+            "I can help with [smaller thing] instead.",
+            "Please ask me again in [month]."
+          ]
+        }
+      }
+    },
+    {
+      "id": "introduce",
+      "name": "Introducing Yourself",
+      "tone": "Warm and brief. Say who you are and why you're writing.",
+      "dos": [
+        "Say who you are in your first sentence",
+        "Say who sent you or how you found them",
+        "Ask for one small next step"
+      ],
+      "donts": [
+        "Tell your whole life story",
+        "Ask for a big favor right away",
+        "Send the same email to everyone"
+      ],
+      "sectionOverrides": {
+        "subject": {
+          "tip": "Say who sent you or what you're writing about, so a stranger will open it.",
+          "good": "Mr. Lee suggested I contact you about the intern opening",
+          "bad": "Hello from me",
+          "phrases": [
+            "[Name] suggested I contact you",
+            "Introduction: [your name], [your role]"
+          ]
+        },
+        "purpose": {
+          "tip": "Say your name, what you do, and why you're writing to this person.",
+          "good": "My name is Ana Ruiz, and Mr. Lee suggested I write to you about the intern opening.",
+          "bad": "You don't know me, but I've always wanted to do something like this.",
+          "phrases": [
+            "My name is [name], and I'm a [role] at [place].",
+            "[Name] suggested I write to you about…",
+            "I found your name on [place], and I'm writing about…"
+          ]
+        },
+        "details": {
+          "tip": "Give one or two facts that show why you're worth a reply. Save the rest.",
+          "good": "I finished the office skills program at Valley College in May, and I've run the front desk at the clinic since June.",
+          "bad": "I was born in 1999 and always liked computers, and after high school I tried several things."
+        },
+        "ask": {
+          "tip": "Ask for one small step the reader can say yes to.",
+          "good": "Could we talk for 15 minutes by Friday, Nov 6?",
+          "bad": "Please give me a job.",
+          "phrases": [
+            "Could we talk for [minutes] minutes on [day]?",
+            "May I send you my resume?",
+            "Should I contact [name] or [name]?"
+          ]
+        }
+      }
     }
   ]
 }

@@ -6,7 +6,7 @@
 // Opened from Home's "Your progress" panel.
 
 import { CS, C_IDS } from '../checks/cs';
-import { loadDraft, savedAgo } from '../drafts/drafts';
+import { draftFileExists, loadDraft, savedAgo } from '../drafts/drafts';
 import type { App } from '../flow/app';
 import { byType, loadProgress, rate, RECENT, summarize, type ProgressRecord } from '../progress/progress';
 import { h } from '../ui/dom';
@@ -82,10 +82,10 @@ export function progressPage(app: App, back: () => void): HTMLElement {
             h('span', { class: 'version-label' }, h('strong', null, typeName(r.typeId)),
               h('span', { class: 'muted' }, ` · ${savedAgo(r.at)} · ${r.words} words · style ${r.style ?? '—'}`)),
             h('button', { class: 'btn small', on: { click: async (e: Event) => {
-              const d = await loadDraft(r.draftId);
+              const d = await loadDraft(r.draftId).catch(() => null);
               if (d) return app.open(d);
               const btn = e.target as HTMLButtonElement;
-              btn.textContent = 'Deleted';
+              btn.textContent = (await draftFileExists(r.draftId)) ? "Can't open" : 'Deleted';
               btn.disabled = true;
             } } }, 'Open'))))));
   })();

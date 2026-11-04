@@ -25,8 +25,13 @@ export function installCopyGuard(): void {
     e.clipboardData?.setData('text/plain', sel.anchorNode?.parentElement?.closest('.locked') ? '' : frag.textContent ?? '');
     e.preventDefault();
   });
+  // A file dropped outside the one box that takes files would replace the whole app window.
+  const hasFiles = (e: DragEvent) => !!e.dataTransfer?.types.includes('Files');
+  document.addEventListener('dragover', (e) => {
+    if (hasFiles(e)) e.preventDefault();
+  });
   // Block dropping anything dragged from inside the app into a text box.
   document.addEventListener('drop', (e) => {
-    if ((e.target as HTMLElement)?.closest?.('textarea, input')) e.preventDefault();
+    if (hasFiles(e) || (e.target as HTMLElement)?.closest?.('textarea, input')) e.preventDefault();
   });
 }

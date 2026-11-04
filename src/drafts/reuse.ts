@@ -7,10 +7,11 @@
 import { newDraft, type Draft } from './model';
 
 /** A draft for checking something written elsewhere: opens straight to the one big box. */
-export function ownWritingDraft(): Draft {
+export function ownWritingDraft(text = ''): Draft {
   const d = newDraft();
   d.typeId = 'own';
   d.stepKey = 'write:writing';
+  if (text) d.text.writing = text;
   return d;
 }
 

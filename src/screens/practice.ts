@@ -6,11 +6,13 @@
 
 import { CS } from '../checks/cs';
 import type { App } from '../flow/app';
+import { DRILL_SETS, doneIn, loadDoneDrills, recommendSet, type DrillSet } from '../practice/drills';
 import { finishedIds, practiceDraft, recommend, SCENARIOS, TO_UNLOCK, unlockedLevel, type Scenario } from '../practice/practice';
 import { loadProgress, summarize } from '../progress/progress';
 import { h } from '../ui/dom';
 import { lock } from '../ui/lock';
 import { badge } from './check';
+import { drillPage } from './drill';
 
 const LEVEL_NAMES: Record<number, string> = { 1: 'Level 1 — Everyday emails', 2: 'Level 2 — Trickier asks', 3: 'Level 3 — Formal pieces' };
 
@@ -22,6 +24,16 @@ export function practicePage(app: App, back: () => void): HTMLElement {
     const open = unlockedLevel(records);
     const next = recommend(records, summarize(records).focus);
     const levels = [...new Set(SCENARIOS.map((s) => s.level))].sort();
+    const drillsDone = await loadDoneDrills();
+    const nextSet = recommendSet(drillsDone, summarize(records).focus);
+
+    const drillCard = (s: DrillSet) => h('button', {
+      class: `pick-card practice-card${s.id === nextSet?.id ? ' selected' : ''}`,
+      on: { click: () => void app.goPage((a) => drillPage(a, () => void a.goPage(practicePage), s)) },
+    },
+      h('span', { class: 'pick-name' }, s.title, s.id === nextSet?.id ? h('span', { class: 'tag' }, 'Try this next') : null),
+      h('span', { class: 'pick-desc' }, badge(s.c), ` ${CS[s.c].name} · ${doneIn(s, drillsDone)} of ${s.lines.length} drills done`),
+      lock(h('span', { class: 'situation' }, s.blurb)));
 
     const card = (s: Scenario) => {
       const locked = s.level > open;
@@ -40,6 +52,9 @@ export function practicePage(app: App, back: () => void): HTMLElement {
 
     body.replaceChildren(
       lock(h('p', { class: 'lead' }, 'Practice on made-up situations. Each one fills in your plan — who you\'re writing to and the key facts — and you write every word. Your scores count toward your progress.')),
+      h('section', { class: 'practice-level' },
+        h('h2', null, 'Two-minute drills'),
+        h('div', { class: 'pick-grid topics' }, DRILL_SETS.map(drillCard))),
       ...levels.map((level) =>
         h('section', { class: 'practice-level' },
           h('h2', null, LEVEL_NAMES[level] ?? `Level ${level}`, level > open ? h('span', { class: 'tag' }, 'Locked') : null),

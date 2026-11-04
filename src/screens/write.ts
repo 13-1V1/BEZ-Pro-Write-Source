@@ -9,13 +9,13 @@ import type { Draft } from '../drafts/model';
 import { assemble } from '../export/assemble';
 import type { App, ScreenView } from '../flow/app';
 import type { Step } from '../flow/steps';
-import { FRAMEWORKS, joinParts, type Framework } from '../frameworks/frameworks';
+import { FRAMEWORKS, joinParts, partSpot, type Framework } from '../frameworks/frameworks';
 import { profileText } from '../profiles/profiles';
 import { countWords, targetState } from '../scores/words';
 import { attachSpell } from '../spell/attach';
 import type { Section } from '../types/schema';
 import { h } from '../ui/dom';
-import { createEditor } from '../ui/editor';
+import { createEditor, selectWords } from '../ui/editor';
 import { speakButton } from '../ui/speak';
 import { OWN_TYPE } from '../checks/run';
 import { ownTools } from './own-tools';
@@ -69,7 +69,12 @@ export function writeScreen(app: App, step: Step): ScreenView {
   };
 
   const input = fw ? frameworkBoxes(app, d, section, fw, textChanged) : singleBox(app, d, section, textChanged);
+  own?.watchDrops(input.el);
   drawCounter(counter, d.text[section.id] ?? '', section.targetWords);
+  // Sent here by "Change my words": select those words once the screen is showing.
+  const spot = app.spot;
+  app.spot = null;
+  if (spot) queueMicrotask(() => input.select(spot.start, spot.end));
 
   const phrases = section.phrases.length
     ? lock(h('div', { class: 'phrase-bank', id: `phrases-${section.id}`, hidden: true },
@@ -143,6 +148,7 @@ function singleBox(app: App, d: Draft, section: Section, changed: () => void) {
   return {
     el: h('div', null, h('label', { class: 'label', for: `write-${section.id}` }, yourLabel(section.label)), editor.el),
     focus: editor.textarea,
+    select: (start: number, end: number) => selectWords(editor.textarea, start, end),
   };
 }
 
@@ -159,6 +165,7 @@ function frameworkBoxes(app: App, d: Draft, section: Section, fw: Framework, cha
   }
 
   let first: HTMLTextAreaElement | undefined;
+  const areas: Record<string, HTMLTextAreaElement> = {};
   const boxes = fw.parts.map((part, i) => {
     const id = `write-${section.id}-${part.id}`;
     const counter = h('p', { class: 'counter small' });
@@ -178,6 +185,7 @@ function frameworkBoxes(app: App, d: Draft, section: Section, fw: Framework, cha
     const spell = attachSpell(app, editor);
     drawCounter(counter, answers[part.id] ?? '', part.targetWords, 'small');
     first ??= editor.textarea;
+    areas[part.id] = editor.textarea;
     return h('div', { class: 'fw-part' },
       h('label', { class: 'fw-label', for: id }, h('span', { class: 'fw-step' }, String(i + 1)), part.label, h('span', { class: 'fw-q' }, ` — ${part.question}`)),
       lock(h('p', { class: 'hint' }, part.tip)),
@@ -188,5 +196,9 @@ function frameworkBoxes(app: App, d: Draft, section: Section, fw: Framework, cha
   return {
     el: h('div', { class: 'framework' }, lock(h('p', { class: 'fw-intro' }, h('strong', null, `${fw.name}: `), fw.intro)), boxes),
     focus: first,
+    select: (start: number, end: number) => {
+      const at = partSpot(fw, answers, start, end);
+      if (at) selectWords(areas[at.partId], at.start, at.end);
+    },
   };
 }

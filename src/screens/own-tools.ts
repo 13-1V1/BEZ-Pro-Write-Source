@@ -8,13 +8,13 @@
 import { paragraphs } from '../checks/text';
 import { TAG_ROLES, type TagRole } from '../checks/tagged';
 import type { Draft } from '../drafts/model';
-import { pickFile } from '../export/open-file';
+import { pickFile, readPicked, type OpenResult } from '../export/open-file';
 import type { App } from '../flow/app';
 import { h } from '../ui/dom';
 
 const ROLE_LABEL: Record<TagRole | 'body', string> = { body: 'Body', greeting: 'Greeting', ask: 'Ask (what you want them to do)', closing: 'Closing' };
 
-export function ownTools(app: App, d: Draft, sectionId: string): { el: HTMLElement; refresh(): void } {
+export function ownTools(app: App, d: Draft, sectionId: string): { el: HTMLElement; refresh(): void; watchDrops(box: HTMLElement): void } {
   const msg = h('p', { class: 'nav-msg', role: 'status', hidden: true });
   const say = (text: string) => { msg.textContent = text; msg.hidden = false; };
   const confirm = h('div', { class: 'confirm-row', hidden: true });
@@ -26,8 +26,7 @@ export function ownTools(app: App, d: Draft, sectionId: string): { el: HTMLEleme
     app.render();
     app.say(`Opened "${name}". Every word is yours; the checks only point at spots.`);
   };
-  const open = async () => {
-    const r = await pickFile();
+  const take = (r: OpenResult) => {
     if (!r) return;
     if (!r.ok) return say(r.message);
     if (!(d.text[sectionId] ?? '').trim()) return load(r.text, r.name);
@@ -36,6 +35,17 @@ export function ownTools(app: App, d: Draft, sectionId: string): { el: HTMLEleme
       h('button', { class: 'btn primary', on: { click: () => load(r.text, r.name) } }, 'Yes, replace it'),
       h('button', { class: 'btn', on: { click: () => (confirm.hidden = true) } }, 'Keep what I have'));
     confirm.hidden = false;
+  };
+  const open = async () => take(await pickFile());
+
+  /** Drag a file onto the box. Words dragged from inside the app stay blocked (lock.ts). */
+  const watchDrops = (box: HTMLElement) => {
+    box.addEventListener('drop', (e) => {
+      const file = e.dataTransfer?.files[0];
+      if (!file) return;
+      e.preventDefault();
+      void readPicked(file).then(take);
+    });
   };
 
   const list = h('ol', { class: 'tag-list' });
@@ -59,12 +69,13 @@ export function ownTools(app: App, d: Draft, sectionId: string): { el: HTMLEleme
   refresh();
 
   const el = h('div', { class: 'own-tools' },
-    h('p', null, h('button', { class: 'btn small', on: { click: () => void open() } }, 'Open a file I wrote (.txt or Word)…')),
+    h('p', null, h('button', { class: 'btn small', on: { click: () => void open() } }, 'Open a file I wrote (.txt or Word)…'),
+      h('span', { class: 'muted' }, ' or drag a .txt or Word file onto the box')),
     confirm,
     msg,
     h('details', { class: 'group' },
       h('summary', null, 'Which paragraph is which? (optional)'),
       h('p', { class: 'hint' }, 'Mark your greeting, your Ask, and your closing, and the app checks those too: a name in the greeting, a clear request, and a polite sign-off. Leave a blank line between paragraphs.'),
       list));
-  return { el, refresh };
+  return { el, refresh, watchDrops };
 }

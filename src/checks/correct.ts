@@ -2,9 +2,12 @@
 // brennanmmeyer@gmail.com
 
 // CORRECT: Harper spelling/grammar, slang and text-speak, sentences that
-// start lowercase, and a lowercase "i" used as a word.
+// start lowercase, a lowercase "i" used as a word, subject lines that mix capital styles,
+// and numbers or dates that don't add up (facts.ts).
 
+import { factGuard } from './facts';
 import { findPhrases, inside, linkRanges, sentences } from './text';
+import { subjectCaps } from './subject';
 import { flag, isProse, type CheckInput, type Flag } from './types';
 
 /** True when the letter(s) at [start, end) are part of a dotted abbreviation like "U.S." or "i.e.". */
@@ -20,7 +23,7 @@ export function correct(input: CheckInput): Flag[] {
   for (const { section, text } of input.sections) {
     const id = section.id;
     for (const s of input.spell?.[id] ?? [])
-      out.push(flag('correct', 'spelling', id, s.start, s.end, text.slice(s.start, s.end), { use: s.suggestions.join(', ') || undefined, detail: s.message }));
+      out.push(flag('correct', 'spelling', id, s.start, s.end, text.slice(s.start, s.end), { use: s.suggestions.join(', ') || undefined, detail: s.message, unknownWord: s.kind === 'Spelling' }));
     for (const r of findPhrases(text, lists.slang)) {
       if (r.text.length === 1 && inAbbreviation(text, r.start, r.end)) continue;
       out.push(flag('correct', 'slang', id, r.start, r.end, r.text));
@@ -42,5 +45,6 @@ export function correct(input: CheckInput): Flag[] {
       }
     }
   }
+  out.push(...subjectCaps(input), ...factGuard(input));
   return out;
 }

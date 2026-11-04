@@ -18,6 +18,19 @@ export interface Editor {
   setMarks(marks: Mark[]): void;
 }
 
+/** Select words in a box and bring them into view. A textarea can't say where a line wraps, so a hidden copy measures it. */
+export function selectWords(box: HTMLTextAreaElement, start: number, end: number): void {
+  const cs = getComputedStyle(box);
+  const probe = h('div', { 'aria-hidden': 'true' }, box.value.slice(0, start));
+  probe.style.cssText = `position:absolute;visibility:hidden;box-sizing:border-box;white-space:pre-wrap;overflow-wrap:break-word;width:${box.clientWidth}px;font:${cs.font};line-height:${cs.lineHeight};letter-spacing:${cs.letterSpacing};padding:${cs.padding}`;
+  box.parentElement?.append(probe);
+  box.scrollTop = Math.max(0, probe.scrollHeight - box.clientHeight / 2);
+  probe.remove();
+  box.focus({ preventScroll: true });
+  box.setSelectionRange(start, end);
+  box.scrollIntoView({ block: 'center' });
+}
+
 export function createEditor(opts: { id: string; value: string; label: string; rows?: number; onInput: (v: string) => void }): Editor {
   const mirror = h('div', { class: 'editor-mirror', 'aria-hidden': 'true', hidden: true });
   const textarea = h('textarea', {

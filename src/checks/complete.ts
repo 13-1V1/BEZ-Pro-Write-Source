@@ -5,6 +5,7 @@
 // the text, and the Ask section has a clear request or next step.
 
 import { yourLabel } from '../ui/your';
+import { numbersWritten } from './facts';
 import { mainWords } from './goal';
 import { findPhrases, sentences } from './text';
 import { flag, type CheckInput, type Flag } from './types';
@@ -19,9 +20,12 @@ const EVERYWHERE = 3;
  * A Plan fact counts as written if one sentence has at least half of its main
  * words (people put facts in their own words: "I posted it on my website" ->
  * "It can be found on my website"). A word used all through the piece ("program"
- * in an email about a program) counts half. Returns the best sentence, or null.
+ * in an email about a program) counts half. Numbers have to be there too: "Order
+ * #4471" isn't written just because a sentence says "order". Returns the best
+ * sentence, or null.
  */
 export function factSpot(fact: string, input: CheckInput): Spot | null {
+  if (!numbersWritten(fact, input.sections.map((s) => s.text).join('\n'))) return null;
   const want = mainWords(fact);
   const all = input.sections.flatMap(({ section, text }) => sentences(text).map((s) => ({ section, s, words: new Set(mainWords(s.text, 3)) })));
   const uses = new Map<string, number>();

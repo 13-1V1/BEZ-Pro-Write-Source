@@ -1,8 +1,8 @@
 // Created by: Brennan Meyer with use of Claude Code 11/01/2026 Santa Clarita, CA
 // brennanmmeyer@gmail.com
 
-// The reader's and sender's names are real words: teach them to Harper before
-// any check (write-box underlines or the scores), so they're never spelling spots.
+// The reader's and sender's names, and My dictionary, are real words: teach them to Harper
+// before any check (write-box underlines or the scores), so they're never spelling spots.
 
 import type { App } from '../flow/app';
 import { clearSpellCache } from './cache';
@@ -17,5 +17,5 @@ export function namesFrom(app: App): string[] {
 }
 
 export async function teachNames(app: App): Promise<void> {
-  if (await addKnownWords(namesFrom(app))) clearSpellCache();
+  if (await addKnownWords([...namesFrom(app), ...app.data.lists['my-words']])) clearSpellCache();
 }

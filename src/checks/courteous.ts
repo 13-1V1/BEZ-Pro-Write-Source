@@ -2,11 +2,12 @@
 // brennanmmeyer@gmail.com
 
 // COURTEOUS: bossy/harsh words, ALL CAPS, too many "!", the greeting check,
-// and a polite close.
+// a polite close, and the writer's side of tone (tone.ts).
 
 import { yourLabel } from '../ui/your';
 import { hasTitle, normalize } from './complete';
 import { capsWords, findPhrases } from './text';
+import { tone } from './tone';
 import { flag, isProse, type CheckInput, type Flag } from './types';
 
 const MAX_EXCLAMATIONS = 2;
@@ -66,5 +67,6 @@ export function courteous(input: CheckInput): Flag[] {
     if (!close && !closingSection.optional)
       out.push(flag('courteous', 'no-polite-close', closingSection.id, 0, 0, '', { detail: `${yourLabel(closingSection.label, false)} is empty.` }));
   }
+  out.push(...tone(input));
   return out;
 }
